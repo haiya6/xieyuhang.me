@@ -6,8 +6,12 @@ import Pages from 'vite-plugin-pages'
 import Markdown from 'vite-plugin-vue-markdown'
 import matter from 'gray-matter'
 
-// https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src')
+    }
+  },
   plugins: [
     Vue({
       include: [/\.vue$/, /\.md$/],
@@ -18,7 +22,7 @@ export default defineConfig({
       ],
       extensions: ['vue', 'md'],
       exclude: [],
-      extendRoute(route, parent) {
+      extendRoute(route) {
         const md = fs.readFileSync(resolve(__dirname, route.component.slice(1)), 'utf-8')
         const { data } = matter(md)
         route.meta = Object.assign(route.meta || {}, { frontmatter: data })
