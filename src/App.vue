@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isDark } from './store'
+import { isDark } from './logic'
 
 function toggleDark() {
   isDark.value = !isDark.value
@@ -8,7 +8,7 @@ function toggleDark() {
 
 <template>
   <nav class="nav">
-    <RouterLink to="/">xieyuhang's website</RouterLink>
+    <RouterLink to="/">cd /</RouterLink>
     <div class="right">
       <RouterLink class="item" to="/a" title="Blog">Blog</RouterLink>
       <a class="item" target="_blank" title="GitHub" href="https://github.com/haiya6">GitHub</a>
@@ -19,6 +19,7 @@ function toggleDark() {
       </a>
     </div>
   </nav>
+  <RouterView />
 </template>
 
 <style lang="scss" scoped>
@@ -37,7 +38,7 @@ function toggleDark() {
       opacity: 0.7;
       cursor: pointer;
 
-      &+.item {
+      & +.item {
         margin-left: 18px;
       }
 

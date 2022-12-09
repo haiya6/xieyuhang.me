@@ -4,7 +4,9 @@ specifiers:
   '@types/node': ^18.11.12
   '@vitejs/plugin-vue': ^3.2.0
   '@vueuse/core': ^9.6.0
+  dayjs: ^1.11.7
   gray-matter: ^4.0.3
+  highlight.js: ^11.7.0
   sass: ^1.56.2
   typescript: ^4.6.4
   vite: ^3.2.3
@@ -16,6 +18,7 @@ specifiers:
 
 dependencies:
   '@vueuse/core': 9.6.0_vue@3.2.45
+  dayjs: 1.11.7
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
 
@@ -23,6 +26,7 @@ devDependencies:
   '@types/node': 18.11.12
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
   gray-matter: 4.0.3
+  highlight.js: 11.7.0
   sass: 1.56.2
   typescript: 4.9.4
   vite: 3.2.5_73lfsi4xmmmu3zhcuv45qpgb6a
@@ -381,6 +385,10 @@ packages:
 
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /de-indent/1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
@@ -794,6 +802,11 @@ packages:
   /he/1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
+    dev: true
+
+  /highlight.js/11.7.0:
+    resolution: {integrity: sha512-1rRqesRFhMO/PRF+G86evnyJkCgaZFOI+Z6kdj15TA18funfoqJXvgPCLSf0SWq3SRfg1j3HlDs8o4s3EGq1oQ==}
+    engines: {node: '>=12.0.0'}
     dev: true
 
   /immutable/4.1.0:

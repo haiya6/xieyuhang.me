@@ -5,6 +5,7 @@ import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Markdown from 'vite-plugin-vue-markdown'
 import matter from 'gray-matter'
+import hljs from 'highlight.js'
 
 export default defineConfig({
   resolve: {
@@ -29,6 +30,22 @@ export default defineConfig({
         return route
       },
     }),
-    Markdown()
+    Markdown({
+      wrapperClasses: 'post',
+      wrapperComponent: 'Post',
+      markdownItOptions: {
+        quotes: '""\'\'',
+        highlight(str, lang) {
+          if (lang && hljs.getLanguage(lang)) {
+            try {
+              return hljs.highlight(str, { language: lang }).value
+            } catch {
+              // nothing
+            }
+          }
+          return ''
+        }
+      }
+    })
   ]
 })
