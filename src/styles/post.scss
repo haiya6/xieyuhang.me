@@ -2,6 +2,7 @@
   --fg: #555;
   --fg-deep: #222;
   --fg-deeper: #000;
+  padding: 2rem 0;
 
   color: var(--fg);
   font-size: 1rem;
@@ -19,11 +20,11 @@
     color: var(--fg-deeper);
     text-decoration: none;
     font-weight: inherit;
-    border-bottom: 1px solid rgba(125,125,125,.3);
-    transition: border .3s ease-in-out;
+    border-bottom: 1px solid rgb(216, 216, 216);
+    transition: border .3s ease;
 
     &:hover {
-      border-bottom: 1px solid var(--fg);
+      border-bottom-color: var(--fg);
     }
 
     code {

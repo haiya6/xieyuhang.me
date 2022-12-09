@@ -1,5 +1,7 @@
 ---
-title: 在 Vue 中预加载组件
+container: Post
+title: 在 Vue 中怎么实现预加载一个路由组件
+date: 2022/12/9
 ---
 
 > 感谢 [AqingCyan](https://github.com/AqingCyan) 对本文进行翻译，英文原文: [English Version](/posts/why-not-prettier)。

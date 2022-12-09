@@ -19,7 +19,7 @@ export default defineConfig({
     }),
     Pages({
       dirs: [
-        { dir: 'src/posts', baseRoute: 'posts' }
+        { dir: 'src/pages/posts', baseRoute: 'posts' }
       ],
       extensions: ['vue', 'md'],
       exclude: [],
@@ -31,8 +31,7 @@ export default defineConfig({
       },
     }),
     Markdown({
-      wrapperClasses: 'post',
-      wrapperComponent: 'Post',
+      wrapperComponent: 'Container',
       markdownItOptions: {
         quotes: '""\'\'',
         highlight(str, lang) {

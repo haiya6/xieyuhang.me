@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { formatDate } from '@/logic'
+
 const { frontmatter } = defineProps({
   frontmatter: {
     type: Object,
@@ -8,20 +10,16 @@ const { frontmatter } = defineProps({
 </script>
 
 <template>
-  <main>
-    <div class="post">
-      <h1>{{ frontmatter.title }}</h1>
-      <p class="date">2022.12.10</p>
-    </div>
-    <article>
-      <slot />
-    </article>
-  </main>
+  <article class="post">
+    <h1 v-if="frontmatter.title">{{ frontmatter.title }}</h1>
+    <p v-if="frontmatter.date" class="date">{{ formatDate(frontmatter.date) }}</p>
+    <slot />
+  </article>
 </template>
 
 <style lang="scss" scoped>
 main {
-  padding: 2rem;
+  padding: 0 2rem;
 
   .date {
     opacity: 0.5;

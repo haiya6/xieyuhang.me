@@ -1,14 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import Post from '@/components/Post.vue'
+import { registerComponents } from './logic'
 
+import 'nprogress/nprogress.css'
 import './styles/main.scss'
 import './styles/post.scss'
 
 const app = createApp(App)
 app.use(router)
-
-app.component('Post', Post)
+app.use(registerComponents)
 
 app.mount('#app')

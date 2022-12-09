@@ -11,11 +11,13 @@
   "dependencies": {
     "@vueuse/core": "^9.6.0",
     "dayjs": "^1.11.7",
+    "nprogress": "^0.2.0",
     "vue": "^3.2.41",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@types/node": "^18.11.12",
+    "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^3.2.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.7.0",
