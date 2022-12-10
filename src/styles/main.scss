@@ -5,12 +5,21 @@
 }
 
 html {
+  --bg: #fff;
+  --color: ##555;
+  --color-deep: #222;
+  --color-deeper: #000;
+  --transition-duration: 0.3s;
+
   font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
     sans-serif;
   line-height: 1.5;
   font-size: 16px;
-  color: #555;
+  overflow: scroll;
+  background-color: var(--bg);
+  transition-property: background-color;
+  transition-duration: var(--transition-duration);
 }
 
 a {
@@ -26,6 +35,14 @@ img {
   display: block;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 0px;
+}
+
 #app {
   width: 100%;
   max-width: 992px;
@@ -34,16 +51,30 @@ img {
 }
 
 #nprogress {
-  pointer-events: none;
+  .bar {
+    background: #EAC266;
+    height: 2px;
+  }
+
+  .peg {
+    box-shadow: none;
+  }
+
+  .spinner-icon {
+    border-top-color: #EAC266;
+    border-left-color: #EAC266;
+  }
 }
 
-#nprogress .bar {
-  background: #395;
-  opacity: 0.75;
-  position: fixed;
-  z-index: 1031;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
+html.dark {
+  --bg: #050505;
+  --color: #bbb;
+  --color-deep: #ddd;
+  --color-deeper: #fff;
+
+  #nprogress {
+    .bar {
+      height: 3px;
+    }
+  }
 }

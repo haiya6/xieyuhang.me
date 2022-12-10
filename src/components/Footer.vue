@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
+import BackIcon from '@/assets/back.svg?component'
 
 const backVisible = ref(false)
 const route = useRoute()
@@ -13,7 +14,7 @@ watchEffect(() => {
 <template>
   <footer class="footer">
     <a v-if="backVisible" class="back" @click="$router.go(-1)">
-      <img class="icon-back" src="@/assets/back.svg">
+      <BackIcon class="icon-back" />
       <span>. .</span>
     </a>
     <p class="copyright">Copyright 2022 by Xieyuhang.</p>
@@ -24,6 +25,7 @@ watchEffect(() => {
 .footer {
   opacity: 0.6;
   padding: 2rem 0;
+  color: var(--color);
 
   .back {
     display: inline-flex;

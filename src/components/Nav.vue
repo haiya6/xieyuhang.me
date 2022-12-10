@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { isDark } from '@/logic'
+import HomeIcon from '@/assets/home.svg?component'
+import DarkIcon from '@/assets/dark.svg?component'
+import LightIcon from '@/assets/light.svg?component'
 
 function toggleDark() {
   isDark.value = !isDark.value
@@ -8,16 +11,16 @@ function toggleDark() {
 
 <template>
   <nav class="nav">
-    <RouterLink to="/" title="回到首页">
-      <img class="icon-home" src="@/assets/home.svg">
+    <RouterLink class="btn-home" to="/" title="回到首页">
+      <HomeIcon class="icon-home" />
     </RouterLink>
     <div class="right">
-      <RouterLink class="item" to="/" title="Blog">Blog</RouterLink>
+      <RouterLink class="item" to="/posts" title="Blog">Blog</RouterLink>
       <a class="item" target="_blank" title="GitHub" href="https://github.com/haiya6">GitHub</a>
       <a class="item" target="_blank" title="稀土掘金" href="https://juejin.cn/user/4230576474700023">掘金</a>
       <a class="item toggle-theme" title="切换配色方案" @click="toggleDark">
-        <img v-show="isDark" class="icon" src="@/assets/dark.svg">
-        <img v-show="!isDark" class="icon" src="@/assets/light.svg">
+        <DarkIcon class="icon" v-show="isDark" />
+        <LightIcon class="icon" v-show="!isDark" />
       </a>
     </div>
   </nav>
@@ -31,15 +34,21 @@ function toggleDark() {
   align-items: center;
   justify-content: space-between;
   opacity: 0.7;
+  color: var(--color);
   
   img {
     opacity: 0.5;
   }
-  
-  .icon-home {
-    width: 18px;
-    height: 18px;
-    color: inherit;
+
+  .btn-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon-home {
+      width: 18px;
+      height: 18px;
+    }
   }
   
   .right {
@@ -54,10 +63,12 @@ function toggleDark() {
       }
 
       &.toggle-theme {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         .icon {
           width: 18px;
           height: 18px;
-          color: inherit;
         }
       }
     }

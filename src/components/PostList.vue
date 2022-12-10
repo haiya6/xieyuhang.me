@@ -23,7 +23,7 @@ const dateStyle: StyleValue = {
 const router = useRouter()
 
 posts.value = router.getRoutes()
-  .filter(route => route.path.startsWith('/posts'))
+  .filter(route => route.path.startsWith('/posts/'))
   .map(route => {
     const { path, meta } = route
     const { title, date } = meta.frontmatter as any

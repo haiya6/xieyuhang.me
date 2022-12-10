@@ -6,6 +6,7 @@ import Pages from 'vite-plugin-pages'
 import Markdown from 'vite-plugin-vue-markdown'
 import matter from 'gray-matter'
 import hljs from 'highlight.js'
+import SVG from 'vite-svg-loader'
 
 export default defineConfig({
   resolve: {
@@ -19,7 +20,7 @@ export default defineConfig({
     }),
     Pages({
       dirs: [
-        { dir: 'src/pages/posts', baseRoute: 'posts' }
+        { dir: 'src/posts', baseRoute: 'posts' }
       ],
       extensions: ['vue', 'md'],
       exclude: [],
@@ -45,6 +46,7 @@ export default defineConfig({
           return ''
         }
       }
-    })
+    }),
+    SVG()
   ]
 })

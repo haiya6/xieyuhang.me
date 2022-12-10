@@ -1,10 +1,7 @@
 .post {
-  --fg: #555;
-  --fg-deep: #222;
-  --fg-deeper: #000;
   padding: 2rem 0;
 
-  color: var(--fg);
+  color: var(--color);
   font-size: 1rem;
   line-height: 1.75;
 
@@ -17,14 +14,16 @@
   }
 
   a {
-    color: var(--fg-deeper);
+    color: var(--color-deep);
+    border-bottom: 1px solid var(--color-deep);
     text-decoration: none;
     font-weight: inherit;
-    border-bottom: 1px solid rgb(216, 216, 216);
-    transition: border .3s ease;
+    transition-property: border, color;
+    transition-duration: var(--transition-duration);
 
     &:hover {
-      border-bottom-color: var(--fg);
+      color: var(--color-deeper);
+      border-bottom-color: var(--color-deeper);
     }
 
     code {
@@ -33,7 +32,7 @@
   }
 
   strong {
-    color: var(--fg-deep);
+    color: var(--color-deep);
     font-weight: 600;
   }
 
@@ -180,7 +179,7 @@
   }
 
   h1 {
-    color: var(--fg-deeper);
+    color: var(--color-deeper);
     font-weight: 800;
     font-size: 2.25em;
     margin-top: 0;
@@ -189,7 +188,7 @@
   }
 
   h2 {
-    color: var(--fg-deep);
+    color: var(--color-deep);
     font-weight: 700;
     font-size: 1.5em;
     margin-top: 2em;
@@ -259,7 +258,7 @@
   }
 
   code {
-    color: var(--fg-deep);
+    color: var(--color-deep);
     font-weight: 600;
     font-size: 0.875em;
 
@@ -426,10 +425,17 @@
   }
 
   b {
-    color: var(--fg-deep);
+    color: var(--color-deep);
   }
 
   em {
     color: inherit;
+  }
+}
+
+html.dark {
+  .post pre {
+    color: #f8f8f2;
+    background-color: #2b2b2b;
   }
 }
