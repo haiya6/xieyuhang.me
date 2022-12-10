@@ -1,3 +1,5 @@
+import 'core-js/es/array/at'
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
