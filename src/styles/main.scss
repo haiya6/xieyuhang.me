@@ -16,7 +16,7 @@ html {
     sans-serif;
   line-height: 1.5;
   font-size: 16px;
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: var(--bg);
   transition-property: background-color;
   transition-duration: var(--transition-duration);
@@ -36,11 +36,26 @@ img {
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar:horizontal {
-  height: 0px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: var(--bg);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
 }
 
 #app {
