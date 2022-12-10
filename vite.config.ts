@@ -7,6 +7,9 @@ import Markdown from 'vite-plugin-vue-markdown'
 import matter from 'gray-matter'
 import hljs from 'highlight.js'
 import SVG from 'vite-svg-loader'
+import hljsDefineVue from './hljs/vue'
+
+hljs.registerLanguage('vue', hljsDefineVue)
 
 export default defineConfig({
   resolve: {
