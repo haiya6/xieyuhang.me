@@ -7,6 +7,7 @@ import Markdown from 'vite-plugin-vue-markdown'
 import matter from 'gray-matter'
 import hljs from 'highlight.js'
 import SVG from 'vite-svg-loader'
+import LinkAttributes from 'markdown-it-link-attributes'
 import hljsDefineVue from './hljs/vue'
 
 hljs.registerLanguage('vue', hljsDefineVue)
@@ -49,6 +50,14 @@ export default defineConfig({
           }
           return ''
         }
+      },
+      markdownItSetup(md) {
+        md.use(LinkAttributes, {
+          attrs: {
+            target: "_blank",
+            rel: "noopener",
+          }
+        })
       }
     }),
     SVG()
