@@ -1,14 +1,18 @@
 ---
 container: Post
-title: 在 Vue 中怎么实现预加载一个路由组件
-date: 2022/12/9
+title: Vue 中实现预加载一个组件
+date: 2022/11/23
 ---
 
-> 感谢 [AqingCyan](https://github.com/AqingCyan) 对本文进行翻译，英文原文: [English Version](/posts/why-not-prettier)。
+> GitHub: [vue-presetup](https://github.com/haiya6/vue-presetup)
 
 在 Vue 中，利用 VueRouter 可以轻松的实现两个组件（页面）之间的切换，有个常用的设计就是需要在登录页登录后跳转至一个内容页，通常的做法是在登录校验完成之后立即切换路由至内容页，接着内容页发送网络请求获取渲染需要的数据然后渲染带有业务数据的 DOM：
 
+![weapp-scroll-a](/resource/vue-presetup-a.png)
+
 上图中，由于内容页的核心数据都是需要通过网络请求来获取，在数据获取回来之前页面处于空白（或 loading）状态，这里并没有什么逻辑问题，只是有时候可能会想，怎么将这个等待过程提前一点比如放置路由跳转之前，让内容页的初始数据准备好了再进行路由跳转？如下图示：
+
+![weapp-scroll-a](/resource/vue-presetup-b.png)
 
 这篇文章的主要内容将会讨论这个问题。
 
@@ -224,11 +228,3 @@ const MyComponent: Component = {
 ```
 
 至此实现完成。
-
-上面代码演示了思路，代码比较简陋需完善，有一个正在使用的例子是 
-
-http://192.168.0.44:8010/#/login
-
-[源码 Gitlab](http://192.168.0.41/game/yogurt_backoffice/blob/master/admin/src/preloadComponent.ts)
-
-登录后跳转至列表页，列表页的数据是直接展现出来的。

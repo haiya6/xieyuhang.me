@@ -38,6 +38,7 @@ export default defineConfig({
       wrapperComponent: 'Container',
       markdownItOptions: {
         quotes: '""\'\'',
+        linkify: false,
         highlight(str, lang) {
           if (lang && hljs.getLanguage(lang)) {
             try {
