@@ -17,7 +17,6 @@ watchEffect(() => {
       <BackIcon class="icon-back" />
       <span>. .</span>
     </a>
-    <p class="copyright">Copyright 2022 by Xieyuhang.</p>
   </footer>
 </template>
 
@@ -37,10 +36,6 @@ watchEffect(() => {
       width: 18px;
       height: 18px;
     }
-  }
-
-  .copyright {
-    font-size: 0.875rem;
   }
 }
 </style>
