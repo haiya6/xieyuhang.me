@@ -13,11 +13,11 @@ watchEffect(() => {
 
 <template>
   <footer class="footer">
-    <p>FOOTER: TODO</p>
     <a v-if="backVisible" class="back" @click="$router.go(-1)">
       <BackIcon class="icon-back" />
       <span>. .</span>
     </a>
+    <p class="license">CC BY-NC-SA 4.0 2021 © XieYuHang</p>
   </footer>
 </template>
 
@@ -26,6 +26,10 @@ watchEffect(() => {
   opacity: 0.6;
   padding: 2rem 0;
   color: var(--color);
+
+  .license {
+    margin-top: 2rem;
+  }
 
   .back {
     display: inline-flex;
