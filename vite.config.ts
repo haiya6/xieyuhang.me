@@ -9,6 +9,8 @@ import hljs from 'highlight.js'
 import SVG from 'vite-svg-loader'
 import LinkAttributes from 'markdown-it-link-attributes'
 import hljsDefineVue from './hljs/vue'
+import TOC from 'markdown-it-table-of-contents'
+import anchor from 'markdown-it-anchor'
 
 hljs.registerLanguage('vue', hljsDefineVue)
 
@@ -58,6 +60,10 @@ export default defineConfig({
             rel: "noopener",
           }
         })
+        md.use(TOC, {
+          includeLevel: [1, 2, 3]
+        })
+        md.use(anchor)
       }
     }),
     SVG()

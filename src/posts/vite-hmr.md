@@ -4,6 +4,8 @@ title: Vite HMR
 date: 2022/9/1
 ---
 
+[[toc]]
+
 > HMR: Hot Module Replacement
 
 > Vite Version: ^4.0.1

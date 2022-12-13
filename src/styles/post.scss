@@ -18,8 +18,7 @@
     border-bottom: 1px solid var(--color-deep);
     text-decoration: none;
     font-weight: inherit;
-    transition-property: border, color;
-    transition-duration: var(--transition-duration);
+    transition: all var(--transition-duration);
 
     &:hover {
       color: var(--color-deeper);

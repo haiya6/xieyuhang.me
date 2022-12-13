@@ -4,6 +4,8 @@ title: Vue 中实现预加载一个组件
 date: 2022/11/23
 ---
 
+[[toc]]
+
 > GitHub: [vue-presetup](https://github.com/haiya6/vue-presetup)
 
 在 Vue 中，利用 VueRouter 可以轻松的实现两个组件（页面）之间的切换，有个常用的设计就是需要在登录页登录后跳转至一个内容页，通常的做法是在登录校验完成之后立即切换路由至内容页，接着内容页发送网络请求获取渲染需要的数据然后渲染带有业务数据的 DOM：

@@ -4,6 +4,8 @@ title: 微信小程序中基于WXS实现回弹的平滑滚动容器
 date: 2022/7/12
 ---
 
+[[toc]]
+
 > GitHub: [weapp-scroll](https://github.com/haiya6/weapp-scroll)
 
 ## 前言

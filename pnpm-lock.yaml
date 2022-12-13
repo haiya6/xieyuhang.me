@@ -9,7 +9,9 @@ specifiers:
   dayjs: ^1.11.7
   gray-matter: ^4.0.3
   highlight.js: ^11.7.0
+  markdown-it-anchor: ^8.6.5
   markdown-it-link-attributes: ^4.0.1
+  markdown-it-table-of-contents: ^0.6.0
   nprogress: ^0.2.0
   sass: ^1.56.2
   typescript: ^4.6.4
@@ -35,7 +37,9 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
   gray-matter: 4.0.3
   highlight.js: 11.7.0
+  markdown-it-anchor: 8.6.5
   markdown-it-link-attributes: 4.0.1
+  markdown-it-table-of-contents: 0.6.0
   sass: 1.56.2
   typescript: 4.9.4
   vite: 3.2.5_73lfsi4xmmmu3zhcuv45qpgb6a
@@ -1074,8 +1078,20 @@ packages:
     dependencies:
       sourcemap-codec: 1.4.8
 
+  /markdown-it-anchor/8.6.5:
+    resolution: {integrity: sha512-PI1qEHHkTNWT+X6Ip9w+paonfIQ+QZP9sCeMYi47oqhH+EsW8CrJ8J7CzV19QVOj6il8ATGbK2nTECj22ZHGvQ==}
+    peerDependencies:
+      '@types/markdown-it': '*'
+      markdown-it: '*'
+    dev: true
+
   /markdown-it-link-attributes/4.0.1:
     resolution: {integrity: sha512-pg5OK0jPLg62H4k7M9mRJLT61gUp9nvG0XveKYHMOOluASo9OEF13WlXrpAp2aj35LbedAy3QOCgQCw0tkLKAQ==}
+    dev: true
+
+  /markdown-it-table-of-contents/0.6.0:
+    resolution: {integrity: sha512-jHvEjZVEibyW97zEYg19mZCIXO16lHbvRaPDkEuOfMPBmzlI7cYczMZLMfUvwkhdOVQpIxu3gx6mgaw46KsNsQ==}
+    engines: {node: '>6.4.0'}
     dev: true
 
   /markdown-it/13.0.1:
