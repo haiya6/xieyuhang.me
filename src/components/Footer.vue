@@ -13,6 +13,7 @@ watchEffect(() => {
 
 <template>
   <footer class="footer">
+    <p>FOOTER: TODO</p>
     <a v-if="backVisible" class="back" @click="$router.go(-1)">
       <BackIcon class="icon-back" />
       <span>. .</span>

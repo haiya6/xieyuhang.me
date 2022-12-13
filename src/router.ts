@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import postRoutes from '~pages'
 import Home from '@/pages/home.md'
-import Posts from '@/pages/posts.md'
 import NProgress from 'nprogress'
 
 const router = createRouter({
@@ -10,10 +9,6 @@ const router = createRouter({
     {
       path: '/',
       component: Home
-    },
-    {
-      path: '/posts',
-      component: Posts
     },
     ...postRoutes
   ]
