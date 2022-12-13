@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, StyleValue } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { formatDate } from '@/logic'
 
@@ -15,11 +15,6 @@ const { number } = defineProps({
   }
 })
 const posts = ref<Post[]>([])
-const dateStyle: StyleValue = {
-  fontSize: '0.9rem',
-  opacity: '0.8',
-  marginLeft: '1rem'
-}
 const router = useRouter()
 
 posts.value = router.getRoutes()
@@ -38,12 +33,27 @@ posts.value = router.getRoutes()
 </script>
 
 <template>
-  <ul>
-    <li v-for="(item, index) in posts" :key="index">
+  <ul class="post-list-comp">
+    <li v-for="(item, index) in posts" :key="index" class="item">
       <RouterLink :to="item.to">
         {{ item.title }}
-        <span :style="dateStyle">{{ formatDate(item.date) }}</span>
+        <span class="date">{{ formatDate(item.date) }}</span>
       </RouterLink>
     </li>
   </ul>
 </template>
+
+<style lang="scss">
+.post-list-comp {
+  .item {
+    & + .item {
+      margin-top: 1rem;
+    }
+    .date {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-left: 1rem;
+    }
+  }
+}
+</style>
