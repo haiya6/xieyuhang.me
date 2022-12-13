@@ -18,9 +18,7 @@ const { frontmatter } = defineProps({
 </template>
 
 <style lang="scss" scoped>
-main {
-  padding: 0 2rem;
-
+article {
   .date {
     opacity: 0.5;
     margin-top: -0.5rem;
