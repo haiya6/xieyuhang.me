@@ -17,7 +17,7 @@ watchEffect(() => {
       <BackIcon class="icon-back" />
       <span>. .</span>
     </a>
-    <p class="license">CC BY-NC-SA 4.0 2021 © XieYuHang</p>
+    <p class="license">CC BY-NC-SA 4.0 2021 © xieyuhang</p>
   </footer>
 </template>
 
