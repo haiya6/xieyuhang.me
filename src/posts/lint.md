@@ -194,4 +194,24 @@ console.log('hello')
 
 `--fix` 参数表示强制修复（在规则可进行自动修复时候会强制修复，不可修复时候依然抛出警告或错误，如强制不使用分号，ESLint 可以删除分号），[这里](https://eslint.org/docs/latest/use/command-line-interface)可以查看更多选项
 
-## TODO
+#### 与 Webpack 结合
+
+上述的使用需要在手动运行命令来检查，一般的 Webpack 项目开发中，希望在编辑文件后实时进行检查反馈，这时需要使用到 [`eslint-webpack-plugin`](https://github.com/webpack-contrib/eslint-webpack-plugin)，修改 Webpack 配置：
+
+```js
+const ESLintPlugin = require('eslint-webpack-plugin')
+
+module.export = {
+  plugins: [
+    new ESLintPlugin({
+      extensions: ['js', 'ts', 'vue']
+    })
+  ]
+}
+```
+
+需要注意的是 `eslint-webpack-plugin` 默认只会对 JS 文件进行检查，因此需要指定 `extensions` 字段
+
+## Stylelint
+
+TODO
