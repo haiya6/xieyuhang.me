@@ -105,11 +105,11 @@ module.exports = {
 对配置文件进行一个简单的解释：
 
 - `env` 前文有提到过的项目运行环境，配置后在 ESLint 检查时会知道哪些是全局变量，而不会报 xx 变量未定义的错误（或警告）
-- `extends`：当前配置文件继承某些配置文件
-  - `eslint:recommended`：ESLint 推荐使用的配置。预设了[一些规则（绿色对钩高亮）](https://eslint.org/docs/latest/rules/)，如 [no-undef](https://eslint.org/docs/latest/rules/no-undef) 规则，该规则禁止使用未定义的变量
+- `extends` 当前配置文件继承某些配置文件
+  - `eslint:recommended` ESLint 推荐使用的配置。预设了[一些规则（绿色对钩高亮）](https://eslint.org/docs/latest/rules/)，如 [no-undef](https://eslint.org/docs/latest/rules/no-undef) 规则，该规则禁止使用未定义的变量
   - `plugin:vue/vue3-essential`：Vue 官方推荐的配置。预设了[一些规则](https://eslint.vuejs.org/rules/)，如 [vue/multi-word-component-names](https://eslint.vuejs.org/rules/multi-word-component-names.html)，该规则要求始终把组件名定义为多单词
-  - `plugin:@typescript-eslint/recommended`：TypeScript 推荐（应该是社区推荐？）使用的配置。预设了[一些规则（绿色对钩高亮）](https://typescript-eslint.io/rules/)，如 [no-namespace](https://typescript-eslint.io/rules/no-namespace/)，该规则不允许使用命令空间关键字即 `namespace`
-- `overrides`：可以更精细控制比如某一具体文件的规则来覆盖全局的规则
+  - `plugin:@typescript-eslint/recommended` TypeScript 推荐（应该是社区推荐？）使用的配置。预设了[一些规则（绿色对钩高亮）](https://typescript-eslint.io/rules/)，如 [no-namespace](https://typescript-eslint.io/rules/no-namespace/)，该规则不允许使用命令空间关键字即 `namespace`
+- `overrides` 可以更精细控制比如某一具体文件的规则来覆盖全局的规则
 - `parser` 和 `parserOptions`：将代码转换为抽象语法树（AST）的解析器即对解析器的配置
 - `plugins` 对 ESLint 进行扩展，如可自定义一些规则等，这里也可不需要填写，因在 `extends` 中继承的配置文件指定了插件
 - `rules` 规则配置，在下文中会进行相对详细的介绍
@@ -192,7 +192,7 @@ console.log('hello')
 
 其中 `.` 表示检查所有文件，也可指定具体的文件如 `eslint src/index.ts --fix`
 
-`--fix` 参数表示强制修复（在规则可进行自动修复时候会强制修复，不可修复时候依然抛出警告或错误，如强制不使用分号，ESLint 可以删除分号），[这里](https://eslint.org/docs/latest/use/command-line-interface)可以查看更多选项
+`--fix` 参数表示自动修复（在规则可进行自动修复时候会自动修复，不可修复时候依然抛出警告或错误，如强制不使用分号，ESLint 可以删除分号），[这里](https://eslint.org/docs/latest/use/command-line-interface)可以查看更多选项
 
 #### 与 Webpack 结合
 
@@ -214,4 +214,87 @@ module.export = {
 
 ## Stylelint
 
-TODO
+[Stylelint](https://stylelint.io/) 是常用的对 CSS/SCSS 部分进行编写规范检查及修复工具
+
+```shell
+pnpm i stylelint stylelint-config-recommended -D
+```
+
+> `stylelint-config-recommended` 是 Stylelint 官方推荐的配置
+
+默认下 Stylelint 支持对 CSS 文件检查，但在项目开发中还会涉及到对 Vue、HTML 以及 SCSS 文件检查，因此还需安装下列第三方包：
+
+处理 Vue、HTML 文件：
+
+```shell
+pnpm i postcss-html -D
+```
+
+处理 SCSS 文件：
+
+```shell
+pnpm i postcss-scss -D
+```
+
+新建 `.stylelintrc.js` 配置 Stylelint：
+
+```js
+module.exports = {
+  extends: [
+    'stylelint-config-recommended'
+  ],
+  overrides: [
+    {
+      files: ['**/*.{html,vue}'],
+      customSyntax: 'postcss-html'
+    },
+    {
+      files: ['**/*.{css,scss}'],
+      customSyntax: 'postcss-scss'
+    }
+  ,
+  rules: {}
+}
+```
+
+对配置文件进行一个简单的解释：
+
++ `extends` 继承某些配置文件
++ `overrides` 因 Stylelint 默认只支持对 CSS 文件的检查，因此这里需要对部分文件应用的配置进行重写，当处理 HTML 和 Vue 文件时，使用 `postcss-html` 语法解析器，解析出里面的 `<style></style>` 标签内容；当处理 CSS 和 SCSS 文件时，使用 `postcss-scss` 语法解析器
++ `rules` 与 ESLint 类似，可以对已实现的规则进行配置，在本文中安装的 Stylelint 官方指定的 `stylelint-config-standard`，可以在[这里](https://stylelint.io/user-guide/rules)浏览规则
+
+### 配置注释 
+
+与 ESLint 类似，Stylelint 也支持通过配置注释对部分代码进行检查规则的调整，[这里](https://stylelint.io/user-guide/ignore-code)查看更多内容
+
+### 使用
+
+在 package.json 中配置 `script`：
+
+```json
+{
+  "scripts": {
+    "stylelint": "stylelint \"**/*.{vue,scss,html,css}\" --fix"
+  }
+}
+```
+
+`stylelint` 命令后接需要检查的文件，`--fix` 参数表示在某些不满足规则代码可自动修复前提下进行自动的修复，更多选项在[这里](https://stylelint.io/user-guide/cli)查看
+
+#### 与 Webpack 结合
+
+上述的使用需要在手动运行命令来检查，一般的 Webpack 项目开发中，希望在编辑文件后实时进行检查反馈，这时需要使用到 `stylelint-webpack-plugin`，修改 Webpack 配置：
+
+```js
+const StylelintPlugin = require('stylelint-webpack-plugin')
+
+module.export = {
+  plugins: [
+    new StylelintPlugin({
+      extensions: ['css', 'scss', 'vue', 'html']
+    })
+  ]
+}
+```
+
+需要注意的是 `stylelint-webpack-plugin` 默认只会对 CSS/SCSS 文件进行检查，因此需要指定 extensions 字段
