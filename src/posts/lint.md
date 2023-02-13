@@ -339,3 +339,13 @@ module.exports = {
 `prettier` 命令后接需要检查的文件，`--write` 表示格式化覆写文件，还有一个类似的选项是 `--check`，但该选项只会对文件进行未格式化的检查，而不是修改文件
 
 如使用 VSCode 编辑器，也可安装 [Prettier 扩展](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)即可在文件中右键使用 Prettier 提供的格式化功能
+
+## Git Hook
+
+在一个 git 项目中，`.git/hooks` 目录中存放着一些 hook，这些 hook 文件可以在 git 执行对应的命令之前被执行，如 `git commit -m 'xxx'` 命令会执行 `.git/hooks/commit-msg` 文件（如有）并通过某种方式将提交信息 `xxx` 传递给执行程序，大多数开源项目如 Vue、Axios 都会利用该 hook 对提交信息进行规范性检查
+
+> 在 `.git/hooks` 目录中，可以看到很多 `.sample` 后缀文件，这些只是模板或者是介绍文件并不是真正的 hook，去掉后缀 `.sample` 才是真正的 hook 文件
+
+### husky
+
+TODO
