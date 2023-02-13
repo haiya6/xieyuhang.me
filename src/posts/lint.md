@@ -8,7 +8,9 @@ date: 2023/2/11
 
 ## ESLint
 
-[ESLint](https://eslint.org/) 是常用的对 **JS/TS** 代码的编写规范检查及修复工具，在项目中可通过运行这个指令来安装及配置 ESLint：
+[ESLint](https://eslint.org/) 是常用的对 **JS/TS** 代码的编写规范检查及修复工具
+
+### 安装及配置
 
 ```shell
 npm init @eslint/config
@@ -139,9 +141,7 @@ module.exports = {
 };
 ```
 
-### rules
-
-规则拥有三种严重的程度：
+对 rules 进行一些解释，rule 拥有三种严重的程度：
 
 - `'off'` 或 `0` 不启用该规则的检查
 - `'warn'` 或 `1` 不满足该规则即会抛出一个警告，但这不会退出程序
@@ -171,12 +171,11 @@ module.exports = {
 如对下一行禁用检查：
 
 ```ts
-
 // eslint-disable-next-line no-console
 console.log('hello')
 ```
 
-[更多](https://eslint.org/docs/latest/use/configure/rules#disabling-rules)
+[更多注释在这里查看](https://eslint.org/docs/latest/use/configure/rules#disabling-rules)
 
 ### 使用
 
@@ -192,7 +191,7 @@ console.log('hello')
 
 其中 `.` 表示检查所有文件，也可指定具体的文件如 `eslint src/index.ts --fix`
 
-`--fix` 参数表示自动修复（在规则可进行自动修复时候会自动修复，不可修复时候依然抛出警告或错误，如强制不使用分号，ESLint 可以删除分号），[这里](https://eslint.org/docs/latest/use/command-line-interface)可以查看更多选项
+`--fix` 参数表示自动修复（在规则可进行自动修复时候会自动修复，不可修复时候依然抛出警告或错误，如强制不使用分号，ESLint 可以删除分号），[这里可以查看更多选项](https://eslint.org/docs/latest/use/command-line-interface)
 
 #### 与 Webpack 结合
 
@@ -216,25 +215,26 @@ module.export = {
 
 [Stylelint](https://stylelint.io/) 是常用的对 CSS/SCSS 部分进行编写规范检查及修复工具
 
+### 安装及配置
+
 ```shell
+# `stylelint-config-recommended` 是 Stylelint 官方推荐的配置
 pnpm i stylelint stylelint-config-recommended -D
 ```
 
-> `stylelint-config-recommended` 是 Stylelint 官方推荐的配置
+默认下 Stylelint 支持对 CSS 文件检查，但在项目开发中还会涉及到对 Vue、HTML 以及 SCSS 文件检查，因此还需安装下列第三方包
 
-默认下 Stylelint 支持对 CSS 文件检查，但在项目开发中还会涉及到对 Vue、HTML 以及 SCSS 文件检查，因此还需安装下列第三方包：
++ 处理 Vue、HTML 文件：
 
-处理 Vue、HTML 文件：
+  ```shell
+  pnpm i postcss-html -D
+  ```
 
-```shell
-pnpm i postcss-html -D
-```
++ 处理 SCSS 文件：
 
-处理 SCSS 文件：
-
-```shell
-pnpm i postcss-scss -D
-```
+  ```shell
+  pnpm i postcss-scss -D
+  ```
 
 新建 `.stylelintrc.js` 配置 Stylelint：
 
@@ -261,11 +261,11 @@ module.exports = {
 
 + `extends` 继承某些配置文件
 + `overrides` 因 Stylelint 默认只支持对 CSS 文件的检查，因此这里需要对部分文件应用的配置进行重写，当处理 HTML 和 Vue 文件时，使用 `postcss-html` 语法解析器，解析出里面的 `<style></style>` 标签内容；当处理 CSS 和 SCSS 文件时，使用 `postcss-scss` 语法解析器
-+ `rules` 与 ESLint 类似，可以对已实现的规则进行配置，在本文中安装的 Stylelint 官方指定的 `stylelint-config-standard`，可以在[这里](https://stylelint.io/user-guide/rules)浏览规则
++ `rules` 与 ESLint 类似，可以对已实现的规则进行配置，在本文中安装的 Stylelint 官方提供的 `stylelint-config-recommended`，[可以在这里浏览规则](https://stylelint.io/user-guide/rules)
 
 ### 配置注释 
 
-与 ESLint 类似，Stylelint 也支持通过配置注释对部分代码进行检查规则的调整，[这里](https://stylelint.io/user-guide/ignore-code)查看更多内容
+与 ESLint 类似，Stylelint 也支持通过配置注释对部分代码进行检查规则的调整，[这里查看更多内容](https://stylelint.io/user-guide/ignore-code)
 
 ### 使用
 
@@ -279,7 +279,7 @@ module.exports = {
 }
 ```
 
-`stylelint` 命令后接需要检查的文件，`--fix` 参数表示在某些不满足规则代码可自动修复前提下进行自动的修复，更多选项在[这里](https://stylelint.io/user-guide/cli)查看
+`stylelint` 命令后接需要检查的文件，`--fix` 参数表示在某些不满足规则代码可自动修复前提下进行自动的修复，[更多选项在这里查看](https://stylelint.io/user-guide/cli)
 
 #### 与 Webpack 结合
 
@@ -297,4 +297,45 @@ module.export = {
 }
 ```
 
-需要注意的是 `stylelint-webpack-plugin` 默认只会对 CSS/SCSS 文件进行检查，因此需要指定 extensions 字段
+需要注意的是 `stylelint-webpack-plugin` 默认只会对 CSS/SCSS 文件进行检查，因此需要指定 `extensions` 字段
+
+## Prettier
+
+[Prettier](https://prettier.io/) 是一个代码格式化工具，与上文提到的 ESLint 和 Stylelint 不同的是 Prettier 不会进行语法规范检查
+
+在 ESLint 中内置规则 [no-var](https://eslint.org/docs/latest/rules/no-var) 会要求使用 `let` 和 `const` 关键字来替代 `var` 关键字，而 Prettier 不会做任何要求只专注于代码的格式化
+
+Prettier 对很多常用文件类型内置了支持，如 HTML/JS/TS/CSS、Vue、SCSS 文件等
+
+### 安装及配置
+
+```shell
+pnpm i prettier -D
+```
+
+新建 Prettier 配置文件 `.prettierrc.js`
+
+```js
+module.exports = {
+  // 不使用分号
+  semi: false
+}
+```
+
+上述配置文件配置了 `semi: false` 表示不使用分号，[更多的配置项在这里查看](https://prettier.io/docs/en/options.html)
+
+### 使用
+
+在 package.json 中配置 `script`：
+
+```json
+{
+  "scripts": {
+    "prettier": "prettier . --write"
+  }
+}
+```
+
+`prettier` 命令后接需要检查的文件，`--write` 表示格式化覆写文件，还有一个类似的选项是 `--check`，但该选项只会对文件进行未格式化的检查，而不是修改文件
+
+如使用 VSCode 编辑器，也可安装 [Prettier 扩展](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)即可在文件中右键使用 Prettier 提供的格式化功能
