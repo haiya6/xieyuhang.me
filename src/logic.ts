@@ -11,19 +11,14 @@ export const registerComponents = (app: App<Element>) => {
     eager: true
   })
   Object.entries(modules).forEach(([name, component]) => {
-    app.component(
-      name.split('/').at(-1)!.replace(/\..+$/, ''),
-      (component as any).default
-    )
+    app.component(name.split('/').at(-1)!.replace(/\..+$/, ''), (component as any).default)
   })
 }
 
 export const isDark = useDark({
   onChanged(dark) {
-    if (dark)
-      $('html')!.classList.add('dark')
-    else
-      $('html')!.classList.remove('dark')
+    if (dark) $('html')!.classList.add('dark')
+    else $('html')!.classList.remove('dark')
 
     $('#highlight-style')!.textContent = dark ? a11yDark : a11yLight
   }

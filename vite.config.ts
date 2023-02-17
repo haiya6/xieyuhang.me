@@ -22,12 +22,10 @@ export default defineConfig({
   },
   plugins: [
     Vue({
-      include: [/\.vue$/, /\.md$/],
+      include: [/\.vue$/, /\.md$/]
     }),
     Pages({
-      dirs: [
-        { dir: 'src/posts', baseRoute: 'posts' }
-      ],
+      dirs: [{ dir: 'src/posts', baseRoute: 'posts' }],
       extensions: ['vue', 'md'],
       exclude: [],
       extendRoute(route) {
@@ -35,7 +33,7 @@ export default defineConfig({
         const { data } = matter(md)
         route.meta = Object.assign(route.meta || {}, { frontmatter: data })
         return route
-      },
+      }
     }),
     Markdown({
       wrapperComponent: 'Container',
@@ -56,8 +54,8 @@ export default defineConfig({
       markdownItSetup(md) {
         md.use(LinkAttributes, {
           attrs: {
-            target: "_blank",
-            rel: "noopener",
+            target: '_blank',
+            rel: 'noopener'
           }
         })
         md.use(TOC, {

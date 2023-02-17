@@ -5,7 +5,7 @@
   font-size: 1rem;
   line-height: 1.75;
 
-  [class~="lead"] {
+  [class~='lead'] {
     color: #4b5563;
     font-size: 1.25em;
     line-height: 1.6;
@@ -35,49 +35,49 @@
     font-weight: 600;
   }
 
-  ol[type="A"] {
+  ol[type='A'] {
     --list-counter-style: upper-alpha;
   }
 
-  ol[type="a"] {
+  ol[type='a'] {
     --list-counter-style: lower-alpha;
   }
 
-  ol[type="A s"] {
+  ol[type='A s'] {
     --list-counter-style: upper-alpha;
   }
 
-  ol[type="a s"] {
+  ol[type='a s'] {
     --list-counter-style: lower-alpha;
   }
 
-  ol[type="I"] {
+  ol[type='I'] {
     --list-counter-style: upper-roman;
   }
 
-  ol[type="i"] {
+  ol[type='i'] {
     --list-counter-style: lower-roman;
   }
 
-  ol[type="I s"] {
+  ol[type='I s'] {
     --list-counter-style: upper-roman;
   }
 
-  ol[type="i s"] {
+  ol[type='i s'] {
     --list-counter-style: lower-roman;
   }
 
-  ol[type="1"] {
+  ol[type='1'] {
     --list-counter-style: decimal;
   }
 
   ol {
-    >li {
+    > li {
       position: relative;
       padding-left: 1.75em;
 
       &::before {
-        content: counter(list-item, var(--list-counter-style, decimal)) ".";
+        content: counter(list-item, var(--list-counter-style, decimal)) '.';
         position: absolute;
         font-weight: 400;
         color: #6b7280;
@@ -101,12 +101,12 @@
   }
 
   ul {
-    >li {
+    > li {
       position: relative;
       padding-left: 1.75em;
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         background-color: #d1d5db;
         border-radius: 50%;
@@ -151,7 +151,7 @@
     border-left: 0.25rem solid #7d7d7d4d;
     margin-top: 1.6em;
     margin-bottom: 1.6em;
-    padding: .6em 1.2em;
+    padding: 0.6em 1.2em;
     opacity: 0.6;
 
     & > :first-child {
@@ -250,7 +250,7 @@
     margin-top: 2em;
     margin-bottom: 2em;
 
-    >* {
+    > * {
       margin-top: 0;
       margin-bottom: 0;
     }
@@ -262,11 +262,11 @@
     font-size: 0.875em;
 
     &::before {
-      content: "`";
+      content: '`';
     }
 
     &::after {
-      content: "`";
+      content: '`';
     }
   }
 
@@ -383,8 +383,8 @@
     margin-bottom: 0.5em;
   }
 
-  >ul {
-    >li {
+  > ul {
+    > li {
       p {
         margin-top: 0.75em;
         margin-bottom: 0.75em;
@@ -392,9 +392,9 @@
     }
   }
 
-  >ol {
-    >li {
-      >* {
+  > ol {
+    > li {
+      > * {
         &:first-child {
           margin-top: 1.25em;
         }

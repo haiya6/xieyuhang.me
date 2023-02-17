@@ -34,7 +34,7 @@ function toggleDark() {
   justify-content: space-between;
   opacity: 0.7;
   color: var(--color);
-  
+
   img {
     opacity: 0.5;
   }
@@ -49,15 +49,15 @@ function toggleDark() {
       height: 18px;
     }
   }
-  
+
   .right {
     display: flex;
     align-items: center;
-    
+
     .item {
       cursor: pointer;
 
-      & +.item {
+      & + .item {
         margin-left: 18px;
       }
 

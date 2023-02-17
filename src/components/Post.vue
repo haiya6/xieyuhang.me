@@ -4,7 +4,7 @@ import { formatDate } from '@/logic'
 const { frontmatter } = defineProps({
   frontmatter: {
     type: Object,
-    required: true,
+    required: true
   }
 })
 </script>
@@ -12,7 +12,9 @@ const { frontmatter } = defineProps({
 <template>
   <article class="post">
     <h1 v-if="frontmatter.title">{{ frontmatter.title }}</h1>
-    <p v-if="frontmatter.date" class="date">{{ formatDate(frontmatter.date) }}</p>
+    <p v-if="frontmatter.date" class="date">
+      {{ formatDate(frontmatter.date) }}
+    </p>
     <slot />
   </article>
 </template>

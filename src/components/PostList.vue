@@ -17,7 +17,8 @@ const { number } = defineProps({
 const posts = ref<Post[]>([])
 const router = useRouter()
 
-posts.value = router.getRoutes()
+posts.value = router
+  .getRoutes()
   .filter(route => route.path.startsWith('/posts/'))
   .map(route => {
     const { path, meta } = route

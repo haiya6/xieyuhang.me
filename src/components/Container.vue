@@ -2,7 +2,7 @@
 const props = defineProps({
   frontmatter: {
     type: Object,
-    required: true,
+    required: true
   }
 })
 </script>
