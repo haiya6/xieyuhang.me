@@ -8,7 +8,7 @@ date: 2021/9/15
 
 Base64 是基于 64 个可打印字符（可理解为常用字符，各平台都可以安全传输的字符）来表示二进制数据的编解码方式，这是基本字符集图：
 
-<img src="/resource/en.wikipedia.org_wiki_Base64.png" style="width: 60%;" />
+<img src="/imgs/en.wikipedia.org_wiki_Base64.png" style="width: 60%;" />
 
 通过将字符集外的所有符号都转换成这个字符集中的字符来实现编码，具体如下：
 

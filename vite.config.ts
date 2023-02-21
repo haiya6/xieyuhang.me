@@ -8,7 +8,7 @@ import matter from 'gray-matter'
 import hljs from 'highlight.js'
 import SVG from 'vite-svg-loader'
 import LinkAttributes from 'markdown-it-link-attributes'
-import hljsDefineVue from './hljs/vue'
+import hljsDefineVue from './plugins/hljs/vue'
 import TOC from 'markdown-it-table-of-contents'
 import anchor from 'markdown-it-anchor'
 

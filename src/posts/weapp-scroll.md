@@ -18,7 +18,7 @@ date: 2022/7/12
 
 以横向滚动为例，内容的宽度大于容器的宽度时可以发生滚动，如图
 
-![weapp-scroll-a](/resource/weapp-scroll-a.png)
+![weapp-scroll-a](/imgs/weapp-scroll-a.png)
 
 接着通过监听三个触摸事件`touchstart`、`touchmove`、`touchend`来实时的改变 content 的 CSS translate，从而从视觉上达到滚动的目的。
 
@@ -488,4 +488,4 @@ exports.touchstart = function touchstart(event) {
 }
 ```
 体验一下：
-<img src="/resource/weapp-scroll-preview.gif" style="width: 30%;" />
+<img src="/imgs/weapp-scroll-preview.gif" style="width: 30%;" />
