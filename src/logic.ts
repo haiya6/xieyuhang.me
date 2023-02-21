@@ -7,7 +7,7 @@ import a11yDark from 'highlight.js/styles/a11y-dark.css?raw'
 export const $ = window.document.querySelector.bind(window.document)
 
 export const registerComponents = (app: App<Element>) => {
-  const modules = import.meta.glob('@/components/*.vue', {
+  const modules = import.meta.glob(['@/components/*.vue', '@/posts/**/*.vue'], {
     eager: true
   })
   Object.entries(modules).forEach(([name, component]) => {
