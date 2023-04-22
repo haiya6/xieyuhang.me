@@ -125,6 +125,6 @@ axx, xax, xxa
 
 <img src="/imgs/sfq/aliyun-demo.png" />
 
-## 优化 - 其它
+### 优化 - 其它
 
 还有一些技术选型方面的优化，如配合使用搜索能力更强的 Elasticsearch 等，待探索...
