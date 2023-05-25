@@ -11,8 +11,8 @@ interface Post {
 
 const { number } = defineProps({
   number: {
-    type: Number
-  }
+    type: Number,
+  },
 })
 const posts = ref<Post[]>([])
 const router = useRouter()
@@ -20,13 +20,13 @@ const router = useRouter()
 posts.value = router
   .getRoutes()
   .filter(route => route.path.startsWith('/posts/'))
-  .map(route => {
+  .map((route) => {
     const { path, meta } = route
     const { title, date } = meta.frontmatter as any
     return {
       title,
       date,
-      to: path
+      to: path,
     }
   })
   .sort((a, b) => +new Date(b.date) - +new Date(a.date))

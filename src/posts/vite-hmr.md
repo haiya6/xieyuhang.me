@@ -13,9 +13,8 @@ date: 2022/9/1
 Vite 通过 `import.meta.hot` 对象来暴露 HMR 相关的 API，且使用该对象时，需要通过一个条件判断来确保 HMR API 的正确使用，这样也可以在生产环境中被 tree-shaking 优化
 
 ```ts
-if (import.meta.hot) {
+if (import.meta.hot)
   import.meta.hot.accept()
-}
 ```
 
 ## 接受自身模块的更新
@@ -30,7 +29,7 @@ export function add(a: number, b: number) {
 }
 
 if (import.meta.hot) {
-  import.meta.hot.accept(newModule => {
+  import.meta.hot.accept((newModule) => {
     // 在 helper.ts 内容发生变化时，会运行此回调，newModule 即为当前的最新模块对象
     console.log(newModule.add(2, 3))
   })
@@ -44,9 +43,8 @@ if (import.meta.hot) {
 ```ts
 console.log('hello')
 
-if (import.meta.hot) {
+if (import.meta.hot)
   import.meta.hot.accept()
-}
 ```
 
 ## 接受直接依赖项的更新
@@ -65,10 +63,10 @@ function main() {
 main()
 
 if (import.meta.hot) {
-  import.meta.hot.accept('./helper', newHelper => {
+  import.meta.hot.accept('./helper', (newHelper) => {
     // 若 helper.ts 模块发生变化，则此回调会运行，且有一个前提是：
     // 在 helper.ts 模块内部没有处理对自身的 HMR，即 helper.ts 不是边界模块
-    debugger
+    // debugger
   })
 }
 ```
@@ -90,7 +88,7 @@ if (import.meta.hot) {
   import.meta.hot.accept(['./helper', './request'], ([newHelper, newRequest]) => {
     // 当 helper.ts 模块发生变化时，newHelper 即为新的模块内容，newRequest 为 undefined
     // 当 request.ts 模块发生变化时，newHelper 为 undefined，newRequest 即为新的模块内容
-    debugger
+    // debugger
   })
 }
 ```
@@ -105,14 +103,14 @@ export function add(a: number, b: number) {
 }
 
 if (import.meta.hot) {
-  import.meta.hot.accept(mod => {
+  import.meta.hot.accept((mod) => {
     // 2
-    debugger
+    // debugger
   })
-  import.meta.hot.dispose(data => {
+  import.meta.hot.dispose((data) => {
     // 1
     // data 即 `import.meta.hot.data`
-    debugger
+    // debugger
   })
 }
 ```

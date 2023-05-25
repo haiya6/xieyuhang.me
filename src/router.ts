@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import NProgress from 'nprogress'
 import postRoutes from '~pages'
 import Home from '@/pages/home.md'
-import NProgress from 'nprogress'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      component: Home
+      component: Home,
     },
-    ...postRoutes
-  ]
+    ...postRoutes,
+  ],
 })
 
 router.beforeEach((_, __, next) => {

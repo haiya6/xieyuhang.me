@@ -89,19 +89,19 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:vue/vue3-essential",
-    "plugin:@typescript-eslint/recommended",
+    'eslint:recommended',
+    'plugin:vue/vue3-essential',
+    'plugin:@typescript-eslint/recommended',
   ],
   overrides: [],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["vue", "@typescript-eslint"],
+  plugins: ['vue', '@typescript-eslint'],
   rules: {},
-};
+}
 ```
 
 对配置文件进行一个简单的解释：
@@ -127,18 +127,18 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:vue/vue3-essential",
-    "plugin:@typescript-eslint/recommended",
+    'eslint:recommended',
+    'plugin:vue/vue3-essential',
+    'plugin:@typescript-eslint/recommended',
   ],
   overrides: [],
-  parser: "vue-eslint-parser",
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: "@typescript-eslint/parser",
-    sourceType: "module",
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
   },
   rules: {},
-};
+}
 ```
 
 对 rules 进行一些解释，rule 拥有三种严重的程度：
@@ -152,14 +152,14 @@ module.exports = {
 > 需要注意的是，规则名称是需在配置文件中 `plugins` 中已实现的规则
 
 ```js
-{
+module.exports = {
   rules: {
     // 关闭对变量未定义的检查
     'no-undef': 'off',
     // 使用单引号，否则将会抛出错误
-    quotes: ['error', 'single'],
+    'quotes': ['error', 'single'],
     // 代码尾部不使用（`never`，或使用 `always`）分号，否则将会抛出错误
-    semi: ['error', 'never']
+    'semi': ['error', 'never']
   }
 }
 ```
@@ -171,7 +171,6 @@ module.exports = {
 如对下一行禁用检查：
 
 ```ts
-// eslint-disable-next-line no-console
 console.log('hello')
 ```
 
@@ -252,7 +251,7 @@ module.exports = {
       files: ['**/*.{css,scss}'],
       customSyntax: 'postcss-scss'
     }
-  ,
+  ],
   rules: {}
 }
 ```

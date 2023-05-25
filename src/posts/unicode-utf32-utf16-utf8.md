@@ -22,7 +22,7 @@ String.fromCodePoint(0x20BB7)
 与这个方法功能相反的方法：查询某一个字符对应的码点，在 ES6 之前，可使用 `String.prototype.charCodeAt()`，同样该方法也只正常生效于小于 0x10000 的码点即 BMP 中，但在 ES6 提供的 [`String.prototype.codePointAt()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt) 则弥补了这一不足：
 
 ```ts
-let s = '𠮷a'
+const s = '𠮷a'
 
 console.log(s.length)
 // 3
@@ -44,17 +44,16 @@ console.log(s.codePointAt(2).toString(16))
 ```ts
 const s = '𠮷a'
 
-for (const ch of s) {
+for (const ch of s)
   console.log(ch.codePointAt(0).toString(16))
   // 0x20bb7
   // 0x61
-}
 ```
 
 另一种方法是使用扩展运算符 `...` 进行展开运算：
 
 ```ts
-[...'𠮷a'].forEach(ch => {
+[...'𠮷a'].forEach((ch) => {
   console.log(ch.codePointAt(0).toString(16))
   // 0x20bb7
   // 0x61

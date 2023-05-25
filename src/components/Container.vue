@@ -2,13 +2,13 @@
 const props = defineProps({
   frontmatter: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 })
 </script>
 
 <template>
-  <component v-if="frontmatter.container" :is="frontmatter.container" v-bind="props">
+  <component :is="frontmatter.container" v-if="frontmatter.container" v-bind="props">
     <slot />
   </component>
   <slot v-else />

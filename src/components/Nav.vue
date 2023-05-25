@@ -18,8 +18,8 @@ function toggleDark() {
       <!-- <a class="item" target="_blank" title="GitHub" href="https://github.com/haiya6">GitHub</a>
       <a class="item" target="_blank" title="稀土掘金" href="https://juejin.cn/user/4230576474700023">掘金</a> -->
       <a class="item toggle-theme" title="切换配色方案" @click="toggleDark">
-        <DarkIcon class="icon" v-show="isDark" />
-        <LightIcon class="icon" v-show="!isDark" />
+        <DarkIcon v-show="isDark" class="icon" />
+        <LightIcon v-show="!isDark" class="icon" />
       </a>
     </div>
   </nav>

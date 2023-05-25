@@ -26,7 +26,7 @@ date: 2022/11/23
 
 ```ts
 // contentLogic.ts
-export function loadContentRecords(params: Record<string, any>)  {
+export function loadContentRecords(params: Record<string, any>) {
   // 逻辑 A
   // 逻辑 B
   // 逻辑 C
@@ -41,7 +41,7 @@ export function loadContentRecords(params: Record<string, any>)  {
 import { loadContentRecords } from './contentLogic'
 import router from './router'
 
-const onSubmit = async () => {
+async function onSubmit() {
   // 1. 登录
   await axios.post('/login', { /** ... */ })
   // 2. 登录通过后，预加载 content 的数据
@@ -54,7 +54,9 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <button @click="onSubmit">登录</button>
+  <button @click="onSubmit">
+    登录
+  </button>
 </template>
 ```
 
@@ -71,7 +73,8 @@ if (window.data) {
   // 如果有数据源，直接使用
   data.value = window.data
   delete window.data
-} else {
+}
+else {
   // 否则通过接口获取
   loadContentRecords({
     A
@@ -80,9 +83,8 @@ if (window.data) {
 </script>
 
 <template>
-  <!-- ... -->
+  <div><!-- ... --></div>
 </template>
-
 ```
 
 上面的实现中，可以看出此方法有一些缺陷：
@@ -128,7 +130,7 @@ import { h, render } from 'vue'
 import Content from './Content.vue'
 import router from './router'
 
-const onSubmit = async () => {
+async function onSubmit() {
   // 1. 登录
   await axios.post('/login', { /** ... */ })
   // 2. 预加载 Content 组件
@@ -137,14 +139,16 @@ const onSubmit = async () => {
   // 找个地方保存这个预加载的 VNode
   window.contentVNode = vnode
   window.setTimeout(() => {
-      // 3. 1s 过后（上文中的约定时间），组件中的数据加载完成，跳转至 content 页面
-      router.push('/content')
+    // 3. 1s 过后（上文中的约定时间），组件中的数据加载完成，跳转至 content 页面
+    router.push('/content')
   }, 1000)
 }
 </script>
 
 <template>
-  <button @click="onSubmit">登录</button>
+  <button @click="onSubmit">
+    登录
+  </button>
 </template>
 ```
 
@@ -161,7 +165,7 @@ import { h, render } from 'vue'
 import Content from './Content.vue'
 import router from './router'
 
-const onSubmit = async () => {
+async function onSubmit() {
   // 1. 登录
   await axios.post('/login', { /** ... */ })
   // 2. 预加载 Content 组件
@@ -174,14 +178,16 @@ const onSubmit = async () => {
   // +++++++++++++++ 标识这个 vnode 是有缓存的（这里实际上是借助 KeepAlive 组件的实现）
   vnode.shapeFlag |= 512
   window.setTimeout(() => {
-      // 3. 1s 过后（上文中的约定时间），组件中的数据加载完成，跳转至 content 页面
-      router.push('/content')
+    // 3. 1s 过后（上文中的约定时间），组件中的数据加载完成，跳转至 content 页面
+    router.push('/content')
   }, 1000)
 }
 </script>
 
 <template>
-  <button @click="onSubmit">登录</button>
+  <button @click="onSubmit">
+    登录
+  </button>
 </template>
 ```
 
@@ -200,7 +206,7 @@ const MyComponent: Component = {
 
     // Vue 在对一个 VNode 进行挂载操作时，会判断此 VNode 是否有缓存（通过上面给的 "512" 标识）
     // 如有缓存，则会调用 VNode 的父元素此方法
-    //（源码中这种情况父元素就是 KeepAlive，但此时借助 KeepAlive 的思想，当前这个组件也实现这个方法）
+    // （源码中这种情况父元素就是 KeepAlive，但此时借助 KeepAlive 的思想，当前这个组件也实现这个方法）
     // 如没有缓存，Vue 就会从 0 挂载一个组件
     instance.ctx.activate = (vnode: VNode, container: HTMLElement, anchor: ChildNode | null) => {
       // 只需要将缓存的 VNode 里的 DOM 结构插入到文档中即可
@@ -210,11 +216,13 @@ const MyComponent: Component = {
     // setup 可返回一个函数，表示此组件的 render 函数
     return () => {
       const { is } = props
-      if (!is) return null
+      if (!is)
+        return null
 
       // 找到预先加载的 VNode 了，返回这个内存中的 VNode，且这个 VNode 的 shapeFlag 是带有 “512” 标识的
       // 进入 Vue 后续的挂载逻辑后，就会走上面的 `activate` 方法
-      if (window.contentVNode) return window.contentVNode
+      if (window.contentVNode)
+        return window.contentVNode
       // 不是缓存的组件，原样返回即可
       else return is
     }
@@ -223,8 +231,8 @@ const MyComponent: Component = {
 </script>
 
 <template>
-  <RouterView v-slot="{ Component }">
-    <MyComponent :is="Component"></MyComponent>
+  <RouterView v-slot="{ Component: VComponent }">
+    <MyComponent :is="VComponent" />
   </RouterView>
 </template>
 ```

@@ -8,21 +8,21 @@ import matter from 'gray-matter'
 import hljs from 'highlight.js'
 import SVG from 'vite-svg-loader'
 import LinkAttributes from 'markdown-it-link-attributes'
-import hljsDefineVue from './plugins/hljs/vue'
 import TOC from 'markdown-it-table-of-contents'
 import anchor from 'markdown-it-anchor'
+import hljsDefineVue from './plugins/hljs/vue'
 
 hljs.registerLanguage('vue', hljsDefineVue)
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
-    }
+      '@': resolve(__dirname, 'src'),
+    },
   },
   plugins: [
     Vue({
-      include: [/\.vue$/, /\.md$/]
+      include: [/\.vue$/, /\.md$/],
     }),
     Pages({
       dirs: [{ dir: 'src/posts', baseRoute: 'posts' }],
@@ -33,7 +33,7 @@ export default defineConfig({
         const { data } = matter(md)
         route.meta = Object.assign(route.meta || {}, { frontmatter: data })
         return route
-      }
+      },
     }),
     Markdown({
       wrapperComponent: 'Container',
@@ -44,26 +44,27 @@ export default defineConfig({
           if (lang && hljs.getLanguage(lang)) {
             try {
               return hljs.highlight(str, { language: lang }).value
-            } catch {
+            }
+            catch {
               // nothing
             }
           }
           return ''
-        }
+        },
       },
       markdownItSetup(md) {
         md.use(LinkAttributes, {
           attrs: {
             target: '_blank',
-            rel: 'noopener'
-          }
+            rel: 'noopener',
+          },
         })
         md.use(TOC, {
-          includeLevel: [1, 2, 3]
+          includeLevel: [1, 2, 3],
         })
         md.use(anchor)
-      }
+      },
     }),
-    SVG()
-  ]
+    SVG(),
+  ],
 })

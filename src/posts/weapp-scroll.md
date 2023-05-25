@@ -33,7 +33,6 @@ module.exports = {
     console.log('touchstart called')
   }
 }
-
 ```
 ```html
 <!-- index.wmxl -->
@@ -94,23 +93,23 @@ Page({
 现在我们可以通过 `change:prop` 会立即执行一次的特点，来对我们的滚动逻辑进行一次初始化操作
 ```js
 // scroll.wxs
-var exports = module.exports
+const exports = module.exports
 
 // 页面实例
-var ownerInstance
+let ownerInstance
 
 // container BoundingClientRect
-var containerRect
+let containerRect
 
 // content 实例，通过此实例设置 CSS 属性
-var slidingContainerInstance
+let slidingContainerInstance
 
 // content BoundingClientRect
-var slidingContainerRect
+let slidingContainerRect
 
 // X方向的最小、最大滚动距离。如 -200 至 0（手势往右时，元素左移，translateX 为负值）
-var minTranslateX
-var maxTranslateX = 0
+let minTranslateX
+const maxTranslateX = 0
 
 /**
  * @param newValue 最新的属性值
@@ -150,23 +149,23 @@ exports.setup = function setup(newValue, oldValue, _ownerInstance, instance) {
 ### 完成基本的跟随手指移动
 ```js
 // scroll.wxs
-var exports = module.exports
+const exports = module.exports
 
 // 页面实例
-var ownerInstance
+let ownerInstance
 
 // container BoundingClientRect
-var containerRect
+let containerRect
 
 // content 实例，通过此实例设置 CSS 属性
-var slidingContainerInstance
+let slidingContainerInstance
 
 // content BoundingClientRect
-var slidingContainerRect
+let slidingContainerRect
 
 // X方向的最小、最大滚动距离。如 -200 至 0（手势往右时，元素左移，translateX 为负值）
-var minTranslateX
-var maxTranslateX = 0
+let minTranslateX
+const maxTranslateX = 0
 
 /**
  * @param newValue 最新的属性值
@@ -184,17 +183,17 @@ exports.setup = function setup(newValue, oldValue, _ownerInstance, instance) {
 }
 
 // 实时记录 content 位置
-var pos = { x: 0 }
+const pos = { x: 0 }
 
 // 记录每次触摸事件开始时，content 的位置，后续的移动都是基于此值增加或减少
-var startPos = { x: 0 }
+const startPos = { x: 0 }
 
 // 记录触摸开始时，手指的位置，后续需要通过比较此值来计算出移动量
-var startTouch = { clientX: 0 }
+const startTouch = { clientX: 0 }
 
 function setTranslate(pos0) {
   slidingContainerInstance.setStyle({
-    transform: 'translateX(' + pos0.x + 'px)'
+    transform: `translateX(${pos0.x}px)`
   })
   pos.x = pos0.x
 }
@@ -205,14 +204,13 @@ exports.touchstart = function touchstart(event) {
 }
 
 exports.touchmove = function touchmove(event) {
-  var deltaX = event.changedTouches[0].clientX - startTouch.clientX
-  var x = startPos.x + deltaX
+  const deltaX = event.changedTouches[0].clientX - startTouch.clientX
+  const x = startPos.x + deltaX
 
-  setTranslate({ x: x })
+  setTranslate({ x })
 }
 
 exports.touchend = function touchend() {}
-
 ```
 
 ### 处理松手后移动超出的情况，需要对其归位：
@@ -249,14 +247,14 @@ exports.touchend = function touchend() {
 
 // 下面内容通过 better-scroll 借鉴 ~
 // 可以理解为入参是一个 [0, 1] 的值，返回也是一个 [0, 1] 的值，用来表示进度
-var timings = {
-  v1: function (t) {
+const timings = {
+  v1(t) {
     return 1 + --t * t * t * t * t
   },
-  v2: function(t) {
+  v2(t) {
     return t * (2 - t)
   },
-  v3: function(t) {
+  v3(t) {
     return 1 - --t * t * t * t
   }
 }
@@ -274,19 +272,20 @@ var timings = {
 function moveFromTo(fromX, toX, duration, timing) {
   if (duration === 0) {
     setTranslate({ x: fromX })
-  } else {
-    var startTime = Date.now()
-    var disX = toX - fromX
-    var rAFHandler = function rAFHandler() {
-      var progressX = timing(clamp(0, 1, (Date.now() - startTime) / duration))
+  }
+  else {
+    const startTime = Date.now()
+    const disX = toX - fromX
+    const rAFHandler = function rAFHandler() {
+      const progressX = timing(clamp(0, 1, (Date.now() - startTime) / duration))
 
       setTranslate({
         x: disX * progressX + fromX
       })
 
-      if (progressX < 1) {
+      if (progressX < 1)
         ownerInstance.requestAnimationFrame(rAFHandler)
-      }
+
     }
     ownerInstance.requestAnimationFrame(rAFHandler)
   }
@@ -311,20 +310,21 @@ exports.touchend = function touchend() {
 ```js
 // scroll.wxs
 exports.touchmove = function touchmove(event) {
-  var deltaX = event.changedTouches[0].clientX - startTouch.clientX
-  var x = startPos.x + deltaX
+  const deltaX = event.changedTouches[0].clientX - startTouch.clientX
+  let x = startPos.x + deltaX
   // 阻尼因子
-  var damping = 0.3
+  const damping = 0.3
 
   if (x > maxTranslateX) {
     // 手指右滑导致元素左侧超出，超出部分添加阻尼行为
     x = maxTranslateX + damping * (x - maxTranslateX)
-  } else if (x < minTranslateX) {
+  }
+  else if (x < minTranslateX) {
     // 手指左滑导致元素右侧超出，超出部分添加阻尼行为
     x = minTranslateX + damping * (x - minTranslateX)
   }
 
-  setTranslate({ x: x })
+  setTranslate({ x })
 }
 ```
 
@@ -377,29 +377,29 @@ exports.touchstart = function touchstart(event) {
 // scroll.wxs
 exports.touchend = function touchend(event) {
   // 记录这一轮触摸动作持续的时间
-  var eventDuration = event.timeStamp - startTimeStamp
-  var finalPos = { x: pos.x }
-  var duration = 0
-  var timing = timings.v1
-  var deceleration = 0.0015
+  const eventDuration = event.timeStamp - startTimeStamp
+  const finalPos = { x: pos.x }
+  let duration = 0
+  let timing = timings.v1
+  const deceleration = 0.0015
 
   // 计算动量，以下计算方式“借鉴”于 better-scroll，有知道使用什么公式的朋友告知以下~
-  var calculateMomentum = function calculateMomentum(start, end) {
-    var distance = Math.abs(start - end)
-    var speed = distance / eventDuration
-    var dir = end - start > 0 ? 1 : -1
-    var duration = Math.min(1800, (speed * 2) / deceleration)
-    var delta = Math.pow(speed, 2) / deceleration * dir
+  const calculateMomentum = function calculateMomentum(start, end) {
+    const distance = Math.abs(start - end)
+    const speed = distance / eventDuration
+    const dir = end - start > 0 ? 1 : -1
+    const duration = Math.min(1800, (speed * 2) / deceleration)
+    const delta = speed ** 2 / deceleration * dir
 
     return {
-      duration: duration,
-      delta: delta
+      duration,
+      delta
     }
   }
 
   // 此次滑动目的地还在边界中，可以进行动量动画
   if (finalPos.x === clamp(minTranslateX, maxTranslateX, finalPos.x)) {
-    var result = calculateMomentum(startPos.x, pos.x)
+    const result = calculateMomentum(startPos.x, pos.x)
 
     duration = result.duration
     finalPos.x += result.delta
@@ -408,18 +408,18 @@ exports.touchend = function touchend(event) {
     if (finalPos.x > maxTranslateX || finalPos.x < minTranslateX) {
       duration = 400
       timing = timings.v2
-      var beyondDis = containerRect.width / 6
-      if (finalPos.x > maxTranslateX) {
+      const beyondDis = containerRect.width / 6
+      if (finalPos.x > maxTranslateX)
         finalPos.x = maxTranslateX + beyondDis
-      } else {
+      else
         finalPos.x = minTranslateX + beyondDis * -1
-      }
+
     }
   }
 
-  moveFromTo(pos.x, finalPos.x, duration, timing, function () {
+  moveFromTo(pos.x, finalPos.x, duration, timing, () => {
     // 若动量动画导致超出了边界，需要进行位置修正，也就是回弹动画
-    var correctedPos = { x: clamp(minTranslateX, maxTranslateX, pos.x) }
+    const correctedPos = { x: clamp(minTranslateX, maxTranslateX, pos.x) }
     if (correctedPos.x !== pos.x) {
       moveFromTo(
         pos.x,

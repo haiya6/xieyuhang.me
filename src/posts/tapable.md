@@ -162,7 +162,7 @@ import { AsyncParallelHook } from 'tapable'
 const hook = new AsyncParallelHook(['name'])
 
 // 注册方式1
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
   return 'tap1 result'
 })
@@ -172,11 +172,11 @@ hook.tap('tap1', name => {
 // 2、在使用 promise 触发时，callback 遵守 Node 中错误传递机制，若第一个参数有值，则会走 Promise.prototype.catch
 hook.tapAsync('tap2', (name, callback) => {
   console.log('tap2', name)
-  setTimeout(() => callback(null, 'tap2 result'), 0);
+  setTimeout(() => callback(null, 'tap2 result'), 0)
 })
 
 // 注册方式3
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve('tap3 result')
 })
@@ -211,7 +211,7 @@ import { AsyncParallelHook } from 'tapable'
 const hook = new AsyncParallelHook(['name'])
 
 // 注册方式1
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
   return 'tap1 result'
 })
@@ -221,13 +221,13 @@ hook.tap('tap1', name => {
 // 2、在使用 promise 触发时，callback 遵守 Node 中错误传递机制，若第一个参数有值，则会走 Promise.prototype.catch
 hook.tapAsync('tap2', (name, callback) => {
   console.log('tap2', name)
-  setTimeout(() => callback('tap2 error', 'tap2 result'), 0);
+  setTimeout(() => callback('tap2 error', 'tap2 result'), 0)
 })
 
 // 注册方式3
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
-  return Promise.reject('tap3 error')
+  return Promise.reject(new Error('tap3 error'))
 })
 
 hook.callAsync('zhangsan', (err, ...args) => {
@@ -276,7 +276,7 @@ import { AsyncParallelBailHook } from 'tapable'
 
 const hook = new AsyncParallelBailHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
@@ -285,7 +285,7 @@ hook.tapAsync('tap2', (name, callback) => {
   setTimeout(() => callback(null, 'tap2 reuslt'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve('tap3 reuslt')
 })
@@ -321,7 +321,7 @@ import { AsyncParallelBailHook } from 'tapable'
 
 const hook = new AsyncParallelBailHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
@@ -330,9 +330,9 @@ hook.tapAsync('tap2', (name, callback) => {
   setTimeout(() => callback('tap2 error', 'tap2 reuslt'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
-  return Promise.reject('tap3 error')
+  return Promise.reject(new Error('tap3 error'))
 })
 
 hook.callAsync('zhangsan', (err, ...args) => {
@@ -381,7 +381,7 @@ import { AsyncSeriesHook } from 'tapable'
 
 const hook = new AsyncSeriesHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
@@ -390,7 +390,7 @@ hook.tapAsync('tap2', (name, callback) => {
   setTimeout(() => callback(null, 'tap2 result'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve('tap3 result')
 })
@@ -426,7 +426,7 @@ import { AsyncSeriesHook } from 'tapable'
 
 const hook = new AsyncSeriesHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
@@ -435,7 +435,7 @@ hook.tapAsync('tap2', (name, callback) => {
   setTimeout(() => callback('tap error', 'tap2 result'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve('tap3 result')
 })
@@ -484,7 +484,7 @@ import { AsyncSeriesBailHook } from 'tapable'
 
 const hook = new AsyncSeriesBailHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
@@ -493,7 +493,7 @@ hook.tapAsync('tap2', (name, callback) => {
   setTimeout(() => callback(null, 'tap2 result'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve()
 })
@@ -527,7 +527,7 @@ import { AsyncSeriesBailHook } from 'tapable'
 
 const hook = new AsyncSeriesBailHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
@@ -536,7 +536,7 @@ hook.tapAsync('tap2', (name, callback) => {
   setTimeout(() => callback('tap2 error', 'tap2 result'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve()
 })
@@ -585,16 +585,16 @@ import { AsyncSeriesLoopHook } from 'tapable'
 
 const hook = new AsyncSeriesLoopHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
 hook.tapAsync('tap2', (name, callback) => {
   console.log('tap2', name)
-  setTimeout(() => callback(null, Math.random() < 0.3 ? undefined : 'tap2 result'), 0);
+  setTimeout(() => callback(null, Math.random() < 0.3 ? undefined : 'tap2 result'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve(Math.random() < 0.3 ? undefined : 'tap3 reuslt')
 })
@@ -634,16 +634,16 @@ import { AsyncSeriesLoopHook } from 'tapable'
 
 const hook = new AsyncSeriesLoopHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
 hook.tapAsync('tap2', (name, callback) => {
   console.log('tap2', name)
-  setTimeout(() => callback(Math.random() < 0.7 ? null : 'tap2 error', 'tap result'), 0);
+  setTimeout(() => callback(Math.random() < 0.7 ? null : 'tap2 error', 'tap result'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve(Math.random() < 0.3 ? undefined : 'tap3 reuslt')
 })
@@ -695,7 +695,7 @@ import { AsyncSeriesWaterfallHook } from 'tapable'
 
 const hook = new AsyncSeriesWaterfallHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
@@ -704,7 +704,7 @@ hook.tapAsync('tap2', (name, callback) => {
   setTimeout(() => callback(null, 'lishi'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve()
 })
@@ -734,7 +734,7 @@ import { AsyncSeriesWaterfallHook } from 'tapable'
 
 const hook = new AsyncSeriesWaterfallHook(['name'])
 
-hook.tap('tap1', name => {
+hook.tap('tap1', (name) => {
   console.log('tap1', name)
 })
 
@@ -743,7 +743,7 @@ hook.tapAsync('tap2', (name, callback) => {
   setTimeout(() => callback('tap2 error', 'lishi'), 0)
 })
 
-hook.tapPromise('tap3', name => {
+hook.tapPromise('tap3', (name) => {
   console.log('tap3', name)
   return Promise.resolve()
 })
