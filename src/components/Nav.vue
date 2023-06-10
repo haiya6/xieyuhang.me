@@ -15,8 +15,8 @@ function toggleDark() {
       <HomeIcon class="icon-home" />
     </RouterLink>
     <div class="right">
-      <!-- <a class="item" target="_blank" title="GitHub" href="https://github.com/haiya6">GitHub</a>
-      <a class="item" target="_blank" title="稀土掘金" href="https://juejin.cn/user/4230576474700023">掘金</a> -->
+      <a class="item" target="_blank" title="GitHub" href="https://github.com/xieyn">GitHub</a>
+      <!-- <a class="item" target="_blank" title="稀土掘金" href="https://juejin.cn/user/4230576474700023">掘金</a> -->
       <a class="item toggle-theme" title="切换配色方案" @click="toggleDark">
         <DarkIcon v-show="isDark" class="icon" />
         <LightIcon v-show="!isDark" class="icon" />
