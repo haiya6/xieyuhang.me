@@ -26,7 +26,7 @@ export default defineConfig({
     }),
     Pages({
       dirs: [{ dir: 'src/posts', baseRoute: 'posts' }],
-      extensions: ['vue', 'md'],
+      extensions: ['md'],
       exclude: [],
       extendRoute(route) {
         const md = fs.readFileSync(resolve(__dirname, route.component.slice(1)), 'utf-8')

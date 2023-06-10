@@ -10,8 +10,10 @@ export function registerComponents(app: App<Element>) {
   const modules = import.meta.glob(['@/components/*.vue', '@/posts/**/*.vue'], {
     eager: true,
   })
-  Object.entries(modules).forEach(([name, component]) => {
-    app.component(name.split('/').at(-1)!.replace(/\..+$/, ''), (component as any).default)
+  Object.entries(modules).forEach(([path, exports]) => {
+    const component = (exports as any).default
+    const name = component.name ?? path.split('/').at(-1)!.replace(/\..+$/, '')
+    app.component(name, component)
   })
 }
 
