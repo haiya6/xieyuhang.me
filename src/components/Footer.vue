@@ -20,6 +20,7 @@ watchEffect(() => {
     <p class="license">
       CC BY-NC-SA 4.0 2021 © xieyuhang
     </p>
+    <a class="case-number" href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2022020453号-1</a>
   </footer>
 </template>
 
@@ -31,6 +32,11 @@ watchEffect(() => {
 
   .license {
     margin-top: 2rem;
+  }
+
+  .case-number {
+    display: block;
+    margin-top: 0.5rem;
   }
 
   .back {
