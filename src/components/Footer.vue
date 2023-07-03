@@ -35,7 +35,7 @@ watchEffect(() => {
   }
 
   .case-number {
-    display: block;
+    display: inline-block;
     margin-top: 0.5rem;
   }
 
