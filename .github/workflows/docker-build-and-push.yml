@@ -23,13 +23,10 @@ jobs:
         run: |
           docker build -t xieyuhang.me:${{ env.PACKAGE_VERSION }} .
 
-      - name: Save Docker image as tar
+      - name: Save Docker image as tar and gzip
         run: |
           docker save -o xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar xieyuhang.me:${{ env.PACKAGE_VERSION }}
-
-      - name: Compress tar file
-        run: |
-          tar -cvzf xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar.gz xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar
+          gzip xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar
 
       - name: Add server to known hosts
         run: |
