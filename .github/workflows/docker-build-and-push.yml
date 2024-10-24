@@ -1,0 +1,50 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Extract version from package.json
+        id: extract_version
+        run: |
+          VERSION=$(jq -r '.version' package.json)
+          echo "PACKAGE_VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        run: |
+          docker build -t xieyuhang.me:${{ env.PACKAGE_VERSION }} .
+
+      - name: Save Docker image as tar
+        run: |
+          docker save -o xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar xieyuhang.me:${{ env.PACKAGE_VERSION }}
+
+      - name: Compress tar file
+        run: |
+          tar -cvzf xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar.gz xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar
+
+      - name: Upload Docker image to remote server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "${SSH_PRIVATE_KEY}" > key.pem
+          chmod 600 key.pem
+          scp -i key.pem xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar.gz $SERVER_USER@$SERVER_IP:/home/images/xieyuhang.me
+
+      - name: Load Docker image on remote server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          ssh -i key.pem $SERVER_USER@$SERVER_IP "docker load -i /home/images/xieyuhang.me/xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar.gz"
