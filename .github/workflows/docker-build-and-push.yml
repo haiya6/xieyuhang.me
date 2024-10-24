@@ -31,6 +31,11 @@ jobs:
         run: |
           tar -cvzf xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar.gz xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar
 
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
       - name: Upload Docker image to remote server
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
