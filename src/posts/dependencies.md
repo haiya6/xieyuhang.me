@@ -1,6 +1,6 @@
 ---
 container: Post
-title: dependencies(package.json)
+title: 介绍 package.json 中的 dependencies 对象值的格式
 date: 2023/7/24
 ---
 
