@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Deploy to tencent-cloud
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - release
 
 jobs:
-  build-and-push:
+  Deploy-to-tencent-cloud:
     runs-on: ubuntu-latest
 
     steps:
