@@ -51,4 +51,4 @@ jobs:
         run: |
           ssh -i key.pem $SERVER_USER@$SERVER_IP "docker load -i /home/images/xieyuhang.me/xieyuhang.me.${{ env.PACKAGE_VERSION }}.tar.gz"
           ssh -i key.pem $SERVER_USER@$SERVER_IP "docker rm -f xieyuhang.me 2>/dev/null || true"
-          ssh -i key.pem $SERVER_USER@$SERVER_IP "docker run --name xieyuhang.me -p 8001:8001 -d xieyuhang.me:${{ env.PACKAGE_VERSION }}"
+          ssh -i key.pem $SERVER_USER@$SERVER_IP "docker run --restart=always --name xieyuhang.me -p 8001:8001 -d xieyuhang.me:${{ env.PACKAGE_VERSION }}"
