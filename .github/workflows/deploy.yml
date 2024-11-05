@@ -15,8 +15,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          VERSION=$(jq -r '.version' package.json)
-          echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "APP_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
           docker build -t xieyuhang.me:$APP_VERSION .
           docker save -o xieyuhang.me.$APP_VERSION.tar xieyuhang.me:$APP_VERSION
           gzip xieyuhang.me.$APP_VERSION.tar
