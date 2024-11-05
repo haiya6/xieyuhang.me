@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          VERSION=$(jq -r '.version' package.json)
+          echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
+          docker build -t xieyuhang.me:$APP_VERSION .
+          docker save -o xieyuhang.me.$APP_VERSION.tar xieyuhang.me:$APP_VERSION
+          gzip xieyuhang.me.$APP_VERSION.tar
+
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Upload Docker image to remote server
+        env:
+          SERVER_ID: ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+          chmod 600 key.pem
+          scp -i key.pem xieyuhang.me.$APP_VERSION.tar.gz $SERVER_ID:/home/images/xieyuhang.me
+          ssh -i key.pem $SERVER_ID "docker load -i /home/images/xieyuhang.me/xieyuhang.me.$APP_VERSION.tar.gz"
+          ssh -i key.pem $SERVER_ID "docker rm -f xieyuhang.me 2>/dev/null || true"
+          ssh -i key.pem $SERVER_ID "docker run --restart=always --name xieyuhang.me -p 8001:8001 -d xieyuhang.me:$APP_VERSION"

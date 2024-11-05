@@ -2,12 +2,10 @@ FROM node:19.9.0-alpine3.18 as build-stage
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY . .
 
 RUN npm install pnpm@9.5.0 -g
 RUN pnpm install
-
-COPY . .
 RUN pnpm build
 
 FROM nginx:alpine as production-stage
