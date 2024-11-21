@@ -11,9 +11,6 @@ RUN pnpm build
 FROM nginx:alpine as production-stage
 
 WORKDIR /app
-COPY --from=build-stage /app/dist /app
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 8001
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]

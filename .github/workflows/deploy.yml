@@ -36,4 +36,4 @@ jobs:
           scp -i key.pem xieyuhang.me.$APP_VERSION.tar.gz $SERVER_ID:/home/images/xieyuhang.me
           ssh -i key.pem $SERVER_ID "docker load -i /home/images/xieyuhang.me/xieyuhang.me.$APP_VERSION.tar.gz"
           ssh -i key.pem $SERVER_ID "docker rm -f xieyuhang.me 2>/dev/null || true"
-          ssh -i key.pem $SERVER_ID "docker run --restart=always --name xieyuhang.me -p 8001:8001 -d xieyuhang.me:$APP_VERSION"
+          ssh -i key.pem $SERVER_ID "docker run --restart=always --name xieyuhang.me -p 8001:80 -d xieyuhang.me:$APP_VERSION"
