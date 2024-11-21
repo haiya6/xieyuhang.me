@@ -42,9 +42,8 @@ module.exports = {
 <!-- 与普通的逻辑层事件不同，这里需要加上 {{}} -->
 <view bind:touchstart="{{ helper.touchstart }}">view</view>
 ```
-这样就给 `view` 绑定了一个 `touchstart` 事件，在事件触发后，会在控制台打印出字符串 "touchstart called"  
+这样就给 `view` 绑定了一个 `touchstart` 事件，在事件触发后，会在控制台打印出字符串 "touchstart called"
 好了，现在正式进入滚动容器的逻辑实现
-
 
 ## 开工
 新建 `scroll.wxml` 文件，准备符合上图中结构的 WXML 内容来构造出一个正确的可以滚动条件
@@ -61,7 +60,7 @@ module.exports = {
 
 新建 `scroll.wxs` 文件，里边用于存放我们实现滚动的所有逻辑
 
-接下来进行初始化操作，首先需要获取到 container 和 content 组件实例，在上一节 "WXS 示例" 中我们知道可以通过在组件中触发一个事件来调用 WXS 模块中的方法，但有没有什么方式可以不用等到用户来触发事件就可以执行吗？  
+接下来进行初始化操作，首先需要获取到 container 和 content 组件实例，在上一节 "WXS 示例" 中我们知道可以通过在组件中触发一个事件来调用 WXS 模块中的方法，但有没有什么方式可以不用等到用户来触发事件就可以执行吗？
 
 通过阅读 [WXS 响应事件](https://developers.weixin.qq.com/miniprogram/dev/framework/view/interactive-animation.html) 文档，可以了解到，另外一种调用 WXS 模块方法就是可以通过 `change:[prop]` 监听某一个组件的 Prop 的改变来执行 WXS 模块中指定的方法，且这个方法会**立即执行**一次，如下面一个示例
 ```js
@@ -114,7 +113,7 @@ const maxTranslateX = 0
 /**
  * @param newValue 最新的属性值
  * @param oldValue 旧的属性值
- * @param ownerInstance 页面所在的实例
+ * @param _ownerInstance 页面所在的实例
  * @param instance 触发事件的组件实例
  */
 exports.setup = function setup(newValue, oldValue, _ownerInstance, instance) {
@@ -131,8 +130,8 @@ exports.setup = function setup(newValue, oldValue, _ownerInstance, instance) {
 <wxs src="./scroll.wxs" module="scroll" />
 
 <!-- 因本案例只利用 change:[prop] 首次执行的机制，传递的给 _ 的参数是个对象字面量 -->
-<view 
-  class="container" 
+<view
+  class="container"
   style="width: 100vw;"
   _="{{ { k: '' } }}"
   change:_="{{ scroll.setup }}"
@@ -170,7 +169,7 @@ const maxTranslateX = 0
 /**
  * @param newValue 最新的属性值
  * @param oldValue 旧的属性值
- * @param ownerInstance 页面所在的实例
+ * @param _ownerInstance 页面所在的实例
  * @param instance 触发事件的组件实例
  */
 exports.setup = function setup(newValue, oldValue, _ownerInstance, instance) {
@@ -285,7 +284,6 @@ function moveFromTo(fromX, toX, duration, timing) {
 
       if (progressX < 1)
         ownerInstance.requestAnimationFrame(rAFHandler)
-
     }
     ownerInstance.requestAnimationFrame(rAFHandler)
   }
@@ -413,7 +411,6 @@ exports.touchend = function touchend(event) {
         finalPos.x = maxTranslateX + beyondDis
       else
         finalPos.x = minTranslateX + beyondDis * -1
-
     }
   }
 

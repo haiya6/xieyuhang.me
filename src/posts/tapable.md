@@ -27,7 +27,7 @@ hook.tap('tap2', (name, age) => {
 hook.call('zhangsan', 15)
 ```
 
-Output: 
+Output:
 ```
 tap1 zhangsan 15
 tap2 zhangsan 15
@@ -717,7 +717,7 @@ hook.callAsync('zhangsan', (err, ...args) => {
 // hook.promise('lishi').then((...args) => console.log('then', args)).catch(err => console.log('catch', err))
 ```
 
-Output: 
+Output:
 
 ```
 tap1 zhangsan

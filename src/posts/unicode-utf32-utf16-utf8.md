@@ -80,8 +80,8 @@ UTF 16 编码对于
   3. 将 U' 的低十位加上 0xDC00 （上述 BMP 中的空白区域中点）得出一个编码单元，称为低代理项（W2），W2 将在 0xDC00 – 0xDFFF 范围内。
 
   ```txt
-  U' = yyyyyyyyyyxxxxxxxxxx // U - 0x10000 
-  W1 = 110110yyyyyyyyyy // 0xD800 + yyyyyyyyyy 
+  U' = yyyyyyyyyyxxxxxxxxxx // U - 0x10000
+  W1 = 110110yyyyyyyyyy // 0xD800 + yyyyyyyyyy
   W2 = 110111xxxxxxxxxx // 0xDC00 + xxxxxxxxxx
   ```
 

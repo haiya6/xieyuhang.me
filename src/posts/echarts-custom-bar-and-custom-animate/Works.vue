@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
 import type { ECharts } from 'echarts'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+defineOptions({
+  name: 'EChartsCustomBarAndCustomAnimateWorks',
+})
 
 const props = defineProps<{
   all?: boolean
   unusualBar?: boolean
   customAnimate?: boolean
 }>()
-
-defineOptions({
-  name: 'EChartsCustomBarAndCustomAnimateWorks',
-})
 
 const containerRef = ref<HTMLElement>()
 let echarts: typeof import('echarts/core') | null = null
@@ -92,17 +92,16 @@ async function renderChart() {
   })
 
   if (props.all || props.customAnimate) {
-    chart.getZr().storage.getDisplayList()
-      .forEach((el) => {
-        if (!el.animators.length) {
-          el.animateFrom(
-            { style: { opacity: 0 } },
-            {
-              duration: 666,
-            },
-          )
-        }
-      })
+    chart.getZr().storage.getDisplayList().forEach((el) => {
+      if (!el.animators.length) {
+        el.animateFrom(
+          { style: { opacity: 0 } },
+          {
+            duration: 666,
+          },
+        )
+      }
+    })
   }
 }
 

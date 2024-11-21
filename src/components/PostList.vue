@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { formatDate } from '@/logic'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { formatDate } from '@/logic'
 
 interface Post {
   title: string

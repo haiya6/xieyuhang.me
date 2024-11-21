@@ -22,7 +22,7 @@ date: 2023/4/20
   + goods_sub_title（商品的副标题）
   + goods_url（商品的主图）
   + goods_price（商品的价格）
-  
+
 还有一些数据（随机生成的500万条），表的名称为 my_goods
 
 假设下列场景，需要找到所有商品价格为 1300.1 的商品（随机选择的一个值），执行 `select * from my_goods where goods_price = 1300.1;`

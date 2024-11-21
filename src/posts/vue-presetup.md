@@ -196,8 +196,8 @@ async function onSubmit() {
 ```vue
 <!-- App.vue -->
 <script setup lang="ts">
-import { getCurrentInstance, h } from 'vue'
 import type { Component } from 'vue'
+import { getCurrentInstance, h } from 'vue'
 
 const MyComponent: Component = {
   props: ['is'],

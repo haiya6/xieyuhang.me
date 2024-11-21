@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import BackIcon from '@/assets/back.svg?component'
 import { ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
-import BackIcon from '@/assets/back.svg?component'
 
 const backVisible = ref(false)
 const route = useRoute()

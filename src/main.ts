@@ -1,9 +1,9 @@
-import 'core-js/es/array/at'
-
 import { createApp } from 'vue'
+
 import App from './App.vue'
-import router from './router'
 import { registerComponents } from './logic'
+import router from './router'
+import 'core-js/es/array/at'
 
 import 'nprogress/nprogress.css'
 import './styles/main.scss'

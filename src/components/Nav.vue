@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { isDark } from '@/logic'
-import HomeIcon from '@/assets/home.svg?component'
 import DarkIcon from '@/assets/dark.svg?component'
+import HomeIcon from '@/assets/home.svg?component'
 import LightIcon from '@/assets/light.svg?component'
+import { isDark } from '@/logic'
 
 function toggleDark() {
   isDark.value = !isDark.value

@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import NProgress from 'nprogress'
-import postRoutes from '~pages'
 import Home from '@/pages/home.md'
+import postRoutes from '~pages'
+import NProgress from 'nprogress'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(),

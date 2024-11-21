@@ -262,7 +262,7 @@ module.exports = {
 + `overrides` 因 Stylelint 默认只支持对 CSS 文件的检查，因此这里需要对部分文件应用的配置进行重写，当处理 HTML 和 Vue 文件时，使用 `postcss-html` 语法解析器，解析出里面的 `<style></style>` 标签内容；当处理 CSS 和 SCSS 文件时，使用 `postcss-scss` 语法解析器
 + `rules` 与 ESLint 类似，可以对已实现的规则进行配置，在本文中安装的 Stylelint 官方提供的 `stylelint-config-recommended`，[可以在这里浏览规则](https://stylelint.io/user-guide/rules)
 
-### 配置注释 
+### 配置注释
 
 与 ESLint 类似，Stylelint 也支持通过配置注释对部分代码进行检查规则的调整，[这里查看更多内容](https://stylelint.io/user-guide/ignore-code)
 

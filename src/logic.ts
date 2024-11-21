@@ -1,8 +1,8 @@
 import type { App } from 'vue'
 import { useDark } from '@vueuse/core'
 import dayjs from 'dayjs'
-import a11yLight from 'highlight.js/styles/a11y-light.css?raw'
 import a11yDark from 'highlight.js/styles/a11y-dark.css?raw'
+import a11yLight from 'highlight.js/styles/a11y-light.css?raw'
 
 export const $ = window.document.querySelector.bind(window.document)
 
