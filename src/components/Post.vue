@@ -24,7 +24,7 @@ const props = defineProps<{
 <style lang="scss" scoped>
 article {
   .date {
-    opacity: 0.5;
+    opacity: 0.7;
     margin-top: -0.5rem;
   }
 }
