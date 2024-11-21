@@ -3,20 +3,21 @@ import DarkIcon from '@/assets/imgs/ic_dark.svg?component'
 import HomeIcon from '@/assets/imgs/ic_home.svg?component'
 import LightIcon from '@/assets/imgs/ic_light.svg?component'
 import { isDark } from '@/logic'
+import { useToggle } from '@vueuse/core'
 
-function toggleDark() {
-  isDark.value = !isDark.value
-}
+const toggleDark = useToggle(isDark)
 </script>
 
 <template>
   <nav class="nav">
-    <RouterLink to="/" title="Home">
-      <HomeIcon class="nav-icon" />
-    </RouterLink>
+    <div class="nav-links">
+      <RouterLink class="nav-link" to="/" title="Home">
+        <HomeIcon class="nav-icon" />
+      </RouterLink>
+    </div>
     <div class="nav-links">
       <a class="nav-link" target="_blank" title="GitHub" href="https://github.com/xieyhn">GitHub</a>
-      <a class="nav-link" title="Toggle Theme" @click="toggleDark">
+      <a class="nav-link" title="Toggle Theme" @click="toggleDark()">
         <DarkIcon v-show="isDark" class="nav-icon" />
         <LightIcon v-show="!isDark" class="nav-icon" />
       </a>
@@ -50,6 +51,7 @@ function toggleDark() {
       align-items: center;
       opacity: 0.7;
       transition: opacity 0.3s;
+
       &:hover {
         opacity: 1;
       }
