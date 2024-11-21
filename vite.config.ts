@@ -62,6 +62,7 @@ export default defineConfig({
         md.use(TOC, {
           includeLevel: [1, 2, 3],
         })
+        // @ts-expect-error unknown
         md.use(anchor)
       },
     }),
