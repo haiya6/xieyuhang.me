@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <Nav />
+  <AppNav />
   <RouterView />
-  <Footer />
+  <AppFooter />
 </template>

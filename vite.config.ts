@@ -36,7 +36,7 @@ export default defineConfig({
       },
     }),
     Markdown({
-      wrapperComponent: 'Container',
+      wrapperComponent: 'PostWrapper',
       markdownItOptions: {
         quotes: '""\'\'',
         linkify: false,

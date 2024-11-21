@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { formatDate } from '@/logic'
 
-const { frontmatter } = defineProps({
-  frontmatter: {
-    type: Object,
-    required: true,
-  },
-})
+const props = defineProps<{
+  frontmatter?: {
+    title?: string
+    date?: string
+  }
+}>()
 </script>
 
 <template>
   <article class="post">
-    <h1 v-if="frontmatter.title">
-      {{ frontmatter.title }}
+    <h1 v-if="props.frontmatter?.title">
+      {{ props.frontmatter.title }}
     </h1>
-    <p v-if="frontmatter.date" class="date">
-      {{ formatDate(frontmatter.date) }}
+    <p v-if="props.frontmatter?.date" class="date">
+      {{ formatDate(props.frontmatter.date) }}
     </p>
     <slot />
   </article>
