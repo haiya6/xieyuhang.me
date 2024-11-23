@@ -32,13 +32,13 @@ import PostList from './PostList.vue'
     <p>另外擅长特效、响应式开发，这里有一些案例（均能访问，但可能需要等待加载）：</p>
     <ul>
       <li>
-        <a href="https://works.xieyuhang.me/wenjinshuyuan/" target="_blank">湖北省重点景区问津书院官方网站</a>
+        <a href="https://works.xieyuhang.me/jiuzhou-plus/" target="_blank">九州商务官方网站</a>
       </li>
       <li>
         <a href="https://works.xieyuhang.me/yzy/" target="_blank">武汉友芝友医疗科技官方网站</a>
       </li>
       <li>
-        <a href="https://works.xieyuhang.me/jiuzhou-plus/" target="_blank">九州商务官方网站</a>
+        <a href="https://works.xieyuhang.me/wenjinshuyuan/" target="_blank">湖北省重点景区问津书院官方网站</a>
       </li>
       <li>
         <a href="https://works.xieyuhang.me/screen-a/" target="_blank">可视化大屏 A</a>
