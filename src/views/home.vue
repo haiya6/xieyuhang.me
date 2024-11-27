@@ -9,6 +9,11 @@ import PostList from './PostList.vue'
     <p>我的开源项目：</p>
     <ul>
       <li>
+        <a href="https://github.com/xieyhn/vite-plugin-lottie" target="_blank">
+          vite-plugin-lottie，是一个 Vite 插件，用于在 Vite 项目中导入 Lottie 资源
+        </a>
+      </li>
+      <li>
         <a href="https://github.com/xieyhn/weapp-scroll" target="_blank">
           weapp-scroll，是一个微信小程序滚动插件，利用 WXS 编写，为统一 iOS 和 Android 的滚动体验
         </a>
