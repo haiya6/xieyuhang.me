@@ -1,4 +1,4 @@
-import Home from '@/views/home.vue'
+import Home from '@/views/Home.vue'
 import postRoutes from '~pages'
 import NProgress from 'nprogress'
 import { createRouter, createWebHistory } from 'vue-router'

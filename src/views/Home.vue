@@ -6,6 +6,7 @@ import PostList from './PostList.vue'
   <Post>
     <h1>你好</h1>
     <p>谢宇航，是一名前端开发工程师，源码熟悉前端框架 Vue、React，爱好和擅长前端基建开发</p>
+    <p>联系我 <code>xieyhn@gmail.com</code></p>
     <p><b>我的开源项目：</b></p>
     <ul>
       <li>
@@ -52,7 +53,6 @@ import PostList from './PostList.vue'
         <a href="https://works.xieyuhang.me/screen-b/" target="_blank">可视化大屏 B</a>
       </li>
     </ul>
-    <p>联系我 <code>xieyhn@gmail.com</code></p>
     <h2>文章</h2>
     <PostList />
   </Post>
